@@ -19,13 +19,11 @@ import ccv.checkhelzio.registrocucshbelenes.R;
 
 import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.calendarioActualizarDiasMes;
 import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.eventos2016;
+import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.irHoyAño;
 import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.irHoyDiaSemana;
 import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.irHoyMes;
 import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.irHoyNumeroDiaMes;
 
-/**
- * Created by check on 09/09/2016.
- */
 
 public class CalendarFragment extends Fragment {
     int fragVal;
@@ -136,7 +134,7 @@ public class CalendarFragment extends Fragment {
             ((LinearLayout) grid_layout.getChildAt(x)).getChildAt(3).setBackgroundColor(Color.TRANSPARENT);
         }
 
-        if (calendarioActualizarDiasMes.get(Calendar.MONTH) == irHoyMes) {
+        if (calendarioActualizarDiasMes.get(Calendar.MONTH) == irHoyMes && irHoyAño == calendarioActualizarDiasMes.get(Calendar.YEAR)) {
             TextView tv_fondo_hoy = ((TextView) ((RelativeLayout) ((LinearLayout) grid_layout.getChildAt(diasemana - 1 + irHoyNumeroDiaMes)).getChildAt(0)).getChildAt(0));
             tv_fondo_hoy.setBackgroundResource(R.drawable.fondo_hoy);
             tv_fondo_hoy.setTextColor(Color.WHITE);

@@ -17,7 +17,7 @@
 
 <resources>
 
-    <declare-styleable name="FabTransform">
+    <declare-styleable name="FabTransition">
         <attr name="fabColor" format="color" />
         <attr name="fabIcon" format="reference" />
     </declare-styleable>

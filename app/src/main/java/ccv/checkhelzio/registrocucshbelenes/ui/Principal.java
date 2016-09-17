@@ -18,7 +18,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
-import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -31,17 +30,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ccv.checkhelzio.registrocucshbelenes.R;
-import ccv.checkhelzio.registrocucshbelenes.transitions.FabTransform;
+import ccv.checkhelzio.registrocucshbelenes.transitions.FabTransition;
 import ccv.checkhelzio.registrocucshbelenes.util.DescargarBD;
 
-/**
- * Created by check on 30/08/2016.
- */
 public class Principal extends AppCompatActivity {
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
-    @BindView(R.id.frameclick) FrameLayout frameClick;
     @BindView(R.id.principal_coordinatorlayout)
     CoordinatorLayout coordinator;
 
@@ -59,7 +54,7 @@ public class Principal extends AppCompatActivity {
     protected static int irHoyMes;
     protected static int irHoyDiaSemana;
     protected static int irHoyNumeroDiaMes;
-    private int irHoyAño;
+    protected static int irHoyAño;
     private int irHoyNumeroMesAño;
 
     protected static String[] eventos2016;
@@ -116,8 +111,9 @@ public class Principal extends AppCompatActivity {
         if (irHoyAño == 2016) {
             irHoyNumeroMesAño = calendarioIrHoy.get(Calendar.MONTH);
         } else {
+            irHoyNumeroMesAño = calendarioIrHoy.get(Calendar.MONTH);
             for (int x = 2016; x < irHoyAño; x++) {
-                irHoyNumeroMesAño += 11;
+                irHoyNumeroMesAño += 12;
             }
         }
     }
@@ -156,13 +152,13 @@ public class Principal extends AppCompatActivity {
             mobileConnected = activeInfo.getType() == ConnectivityManager.TYPE_MOBILE;
             if (wifiConnected) {
                 new DescargarBD().execute("http://148.202.6.72/aplicacion/datos2.txt", Principal.this);
-            } else if (mobileConnected) {
-                //Log.i(TAG, getString(R.string.mobile_connection));
-            }
-        } else {
-            //DESAPARECER FAB BUTTON CALENDARIO Y APARECER FAB BUTON ACTUALIZAR
-            //Log.i(TAG, getString(R.string.no_wifi_or_mobile));
-        }
+            } /*else if (mobileConnected) {
+                Log.i(TAG, getString(R.string.mobile_connection));
+            }*/
+        }/* else {
+            DESAPARECER FAB BUTTON CALENDARIO Y APARECER FAB BUTON ACTUALIZAR
+            Log.i(TAG, getString(R.string.no_wifi_or_mobile));
+        }*/
     }
 
     private String capitalize(final String line) {
@@ -196,7 +192,7 @@ public class Principal extends AppCompatActivity {
     @OnClick(R.id.fab)
     public void fabClick() {
         Intent intent = new Intent(this, DateDialogHelzio.class);
-        FabTransform.addExtras(intent, (Integer) getAcentColor(), R.drawable.ic_fecha);
+        FabTransition.addExtras(intent, (Integer) getAcentColor(), R.drawable.ic_fecha);
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, fab,
                 getString(R.string.transition_date_dialog_helzio));
         startActivityForResult(intent, HELZIO_DATE_DIALOG, options.toBundle());
@@ -292,6 +288,9 @@ public class Principal extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
             case HELZIO_DATE_DIALOG:
+                if (resultCode == RESULT_OK) {
+                    viewPager.setCurrentItem(data.getExtras().getInt("NUMERO_DE_MES"));
+                }
                 break;
         }
     }

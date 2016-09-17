@@ -60,7 +60,7 @@ public class FabTransition extends Transition {
 
     private static final String EXTRA_FAB_COLOR = "EXTRA_FAB_COLOR";
     private static final String EXTRA_FAB_ICON_RES_ID = "EXTRA_FAB_ICON_RES_ID";
-    private static final long DEFAULT_DURATION = 990L;
+    private static final long DEFAULT_DURATION = 330L;
     private static final String PROP_BOUNDS = "fabTransform:bounds";
     private static final String[] TRANSITION_PROPERTIES = {
             PROP_BOUNDS
@@ -69,13 +69,34 @@ public class FabTransition extends Transition {
     private final int color;
     private final int icon;
 
-    public FabTransition(@ColorInt int fabColor, @DrawableRes int fabIconResId) {
+    private FabTransition(@ColorInt int fabColor, @DrawableRes int fabIconResId) {
         color = fabColor;
         icon = fabIconResId;
         setPathMotion(new GravityArcMotion());
         setDuration(DEFAULT_DURATION);
     }
 
+    public FabTransition(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        TypedArray a = null;
+        try {
+            a = context.obtainStyledAttributes(attrs, R.styleable.FabTransition);
+            if (!a.hasValue(R.styleable.FabTransition_fabColor)
+                    || !a.hasValue(R.styleable.FabTransition_fabIcon)) {
+                throw new IllegalArgumentException("Must provide both color & icon.");
+            }
+            color = a.getColor(R.styleable.FabTransition_fabColor, Color.TRANSPARENT);
+            icon = a.getResourceId(R.styleable.FabTransition_fabIcon, 0);
+            setPathMotion(new GravityArcMotion());
+            if (getDuration() < 0) {
+                setDuration(DEFAULT_DURATION);
+            }
+        } finally {
+            if (a != null) {
+                a.recycle();
+            }
+        }
+    }
 
     /**
      * Configure {@code intent} with the extras needed to initialize this transition.

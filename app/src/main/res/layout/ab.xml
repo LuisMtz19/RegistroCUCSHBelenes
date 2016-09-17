@@ -19,15 +19,5 @@
         android:src="@drawable/ic_fecha"
         android:stateListAnimator="@animator/raise" />
 
-    <FrameLayout
-        android:clickable="true"
-        android:id="@+id/frameclick"
-        android:background="@color/scrim"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible">
-
-    </FrameLayout>
-
 </android.support.design.widget.CoordinatorLayout>
 
