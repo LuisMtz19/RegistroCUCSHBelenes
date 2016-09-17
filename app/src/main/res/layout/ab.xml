@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/principal_coordinatorlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?colorAccent">
+
+    <include layout="@layout/aba" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:layout_marginEnd="@dimen/padding_normal"
+        android:background="@drawable/fab"
+        android:elevation="@dimen/z_fab"
+        android:src="@drawable/ic_fecha"
+        android:stateListAnimator="@animator/raise" />
+
+    <FrameLayout
+        android:clickable="true"
+        android:id="@+id/frameclick"
+        android:background="@color/scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+    </FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+

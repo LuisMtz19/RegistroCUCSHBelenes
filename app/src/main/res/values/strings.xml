@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Registro Belenes</string>
+    <string name="header">Centro Universitario de Ciencias Sociales y Humanidades</string>
+    <string name="datos_drawer_a">Sede Belenes</string>
+    <string name="lunes">lun.</string>
+    <string name="martes">mar.</string>
+    <string name="miercoles">mié.</string>
+    <string name="jueves">jue.</string>
+    <string name="viernes">vie.</string>
+    <string name="sabado">sáb.</string>
+    <string name="domingo">dom.</string>
+    <string name="connection_error">Error de conexión</string>
+    <string name="transition_date_dialog_helzio" translatable="false">transition_date_dialog_helzio</string>
+    <string name="aceptar">ACEPTAR</string>
+    <string name="cancelar">CANCELAR</string>
+    <string name="ir_a_la_fecha_seleccionada">Ir a la Fecha Seleccionada</string>
+</resources>

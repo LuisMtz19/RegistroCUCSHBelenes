@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nv"
+    android:background="#fff"
+    android:layout_width="320dp"
+    android:layout_height="match_parent"
+    app:headerLayout="@layout/aca"
+    app:menu="@menu/drawer"
+    android:layout_gravity="start">
+</android.support.design.widget.NavigationView>
