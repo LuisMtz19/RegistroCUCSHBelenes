@@ -1,4 +1,5 @@
 <resources>
     <dimen name="fab_size">56dp</dimen>
     <item name="dialog_ancho" format="float" type="dimen">0.5</item>
+    <dimen name="icon_fecha">24dp</dimen>
 </resources>

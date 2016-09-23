@@ -7,14 +7,15 @@
 
     <include layout="@layout/aba" />
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageButton
+        android:contentDescription="@string/ir_a_fecha"
         android:id="@+id/fab"
         android:layout_width="@dimen/fab_size"
         android:layout_height="@dimen/fab_size"
         android:layout_gravity="bottom|end"
+        android:background="@drawable/fab"
         android:layout_marginBottom="@dimen/padding_normal"
         android:layout_marginEnd="@dimen/padding_normal"
-        android:background="@drawable/fab"
         android:elevation="@dimen/z_fab"
         android:src="@drawable/ic_fecha"
         android:stateListAnimator="@animator/raise" />

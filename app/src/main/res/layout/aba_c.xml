@@ -7,7 +7,8 @@
     android:background="#f2efef"
     app:columnCount="7">
 
-    <LinearLayout style="@style/LinearLayoutDias"
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:layout_marginTop="0dp"
         android:orientation="vertical">
 
@@ -16,21 +17,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:layout_marginTop="0dp"
         android:orientation="vertical">
 
@@ -39,21 +38,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:layout_marginTop="0dp"
         android:orientation="vertical">
 
@@ -62,21 +59,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:layout_marginTop="0dp"
         android:orientation="vertical">
 
@@ -85,21 +80,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:layout_marginTop="0dp"
         android:orientation="vertical">
 
@@ -108,21 +101,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:layout_marginTop="0dp"
         android:orientation="vertical">
 
@@ -131,21 +122,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:layout_marginTop="0dp"
         android:orientation="vertical">
 
@@ -154,22 +143,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
 
-    <LinearLayout style="@style/LinearLayoutDias"
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -177,21 +163,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -199,21 +183,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -221,21 +203,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -243,21 +223,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -265,21 +243,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -287,21 +263,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -309,22 +283,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
 
-    <LinearLayout style="@style/LinearLayoutDias"
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -332,21 +303,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -354,21 +323,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -376,21 +343,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -398,21 +363,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -420,21 +383,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -442,21 +403,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -464,22 +423,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
 
-    <LinearLayout style="@style/LinearLayoutDias"
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -487,21 +443,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -509,21 +463,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -531,21 +483,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -553,21 +503,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -575,21 +523,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -597,21 +543,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -619,22 +563,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
 
-    <LinearLayout style="@style/LinearLayoutDias"
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -642,21 +583,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -664,21 +603,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -686,21 +623,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -708,21 +643,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -730,21 +663,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -752,21 +683,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -774,22 +703,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
 
-    <LinearLayout style="@style/LinearLayoutDias"
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -797,21 +723,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -819,21 +743,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -841,21 +763,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -863,21 +783,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -885,21 +803,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -907,21 +823,19 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
-    <LinearLayout style="@style/LinearLayoutDias"
+
+    <LinearLayout
+        style="@style/LinearLayoutDias"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -929,19 +843,15 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <TextView
-                style="@style/TextViewNumeroDias"/>
+            <TextView style="@style/TextViewNumeroDias" />
 
         </RelativeLayout>
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCasillaEventos"/>
+        <TextView style="@style/TextViewCasillaEventos" />
 
-        <TextView
-            style="@style/TextViewCuantosMas"/>
+        <TextView style="@style/TextViewCuantosMas" />
     </LinearLayout>
 
 </android.support.v7.widget.GridLayout>

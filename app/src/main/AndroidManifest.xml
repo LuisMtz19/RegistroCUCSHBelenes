@@ -39,6 +39,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.DialogEventosHelzio"
+            android:theme="@style/AppTheme.Translucent.DialogEventos">
+            <intent-filter>
+                <action android:name="EVENTOS_DIALOG" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

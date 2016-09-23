@@ -25,7 +25,7 @@ public class DateDialogHelzio extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_datepicker_transition);
+        setContentView(R.layout.dialog_datepicker);
         ButterKnife.bind(this);
 
         Calendar calendar = Calendar.getInstance();
@@ -40,16 +40,13 @@ public class DateDialogHelzio extends Activity {
     @Override
     public void onBackPressed() {
         setResult(RESULT_CANCELED);
-        dismiss();
+        cerrar(null);
     }
 
-    @OnClick (R.id.bt_dialog_cancenlar)
-    public void dismiss() {
-        finishAfterTransition();
-    }
 
     @OnClick (R.id.bt_dialog_aceptar)
     public void irDia(View view) {
+
         int mes;
         if (datePicker.getYear() == 2016) {
             mes = datePicker.getMonth();
@@ -63,6 +60,11 @@ public class DateDialogHelzio extends Activity {
         Intent i = getIntent();
         i.putExtra("NUMERO_DE_MES", mes);
         setResult(RESULT_OK, i);
-        dismiss();
+        cerrar(null);
+    }
+
+    @OnClick (R.id.bt_dialog_cancenlar)
+    public void cerrar(View view) {
+        finishAfterTransition();
     }
 }

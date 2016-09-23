@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Registro Belenes</string>
-    <string name="header">Centro Universitario de Ciencias Sociales y Humanidades</string>
+    <string name="header">CUCSH</string>
     <string name="datos_drawer_a">Sede Belenes</string>
     <string name="lunes">lun.</string>
     <string name="martes">mar.</string>
@@ -14,4 +14,5 @@
     <string name="aceptar">ACEPTAR</string>
     <string name="cancelar">CANCELAR</string>
     <string name="ir_a_la_fecha_seleccionada">Ir a la Fecha Seleccionada</string>
+    <string name="ir_a_fecha">Ir a la fecha seleccionada</string>
 </resources>

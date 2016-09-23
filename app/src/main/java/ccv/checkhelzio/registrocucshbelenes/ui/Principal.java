@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -17,9 +19,13 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.util.TypedValue;
-import android.widget.FrameLayout;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,18 +36,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ccv.checkhelzio.registrocucshbelenes.R;
+import ccv.checkhelzio.registrocucshbelenes.transitions.ChangeBoundBackground;
 import ccv.checkhelzio.registrocucshbelenes.transitions.FabTransition;
 import ccv.checkhelzio.registrocucshbelenes.util.DescargarBD;
 
 public class Principal extends AppCompatActivity {
 
     @BindView(R.id.fab)
-    FloatingActionButton fab;
+    ImageButton fab;
     @BindView(R.id.principal_coordinatorlayout)
     CoordinatorLayout coordinator;
 
     private ArrayList<String> lista_eventos = new ArrayList<>();
-
+    private final String SHARED_TEXT_SIZE = "texto_compartido";
     private static boolean wifiConnected = false;
     private static boolean mobileConnected = false;
     protected static Calendar calendarioActualizarDiasMes;
@@ -64,7 +71,7 @@ public class Principal extends AppCompatActivity {
     private TextView tv_header2;
     private TextView tv_conexion;
 
-    private ViewPager viewPager;
+    protected static ViewPager viewPager;
     private SharedPreferences prefs;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,7 +94,7 @@ public class Principal extends AppCompatActivity {
 
     private void iniciarObjetos() {
         prefs = getSharedPreferences("EVENTOS CUCSH BELENES", Context.MODE_PRIVATE);
-        //st_eventos_guardados = prefs.getString("EVENTOS GUARDADOS", "");
+        st_eventos_guardados = prefs.getString("EVENTOS GUARDADOS", "");
 
         tv_header2 = (TextView) findViewById(R.id.header2);
         tv_conexion = (TextView) findViewById(R.id.conexion);
@@ -198,6 +205,48 @@ public class Principal extends AppCompatActivity {
         startActivityForResult(intent, HELZIO_DATE_DIALOG, options.toBundle());
     }
 
+    public void clickbotones(final View view) {
+        if (!((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString().equals("") ){
+            Intent intent = new Intent(Principal.this, DialogEventosHelzio.class);
+            intent.putExtra("TAG", view.getTag().toString().replaceFirst("null", ""));
+            final Rect startBounds = new Rect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+            ChangeBoundBackground.addExtras(intent, getViewBitmap(view), startBounds);
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Principal.this, view, "fondo");
+            startActivity(intent, options.toBundle());
+        }
+    }
+
+    private Bitmap getViewBitmap(View v) {
+        v.clearFocus();
+        v.setPressed(false);
+
+        boolean willNotCache = v.willNotCacheDrawing();
+        v.setWillNotCacheDrawing(false);
+
+        // Reset the drawing cache background color to fully transparent
+        // for the duration of this operation
+        int color = v.getDrawingCacheBackgroundColor();
+        v.setDrawingCacheBackgroundColor(0);
+
+        if (color != 0) {
+            v.destroyDrawingCache();
+        }
+        v.buildDrawingCache();
+        Bitmap cacheBitmap = v.getDrawingCache();
+        if (cacheBitmap == null) {
+            return null;
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(cacheBitmap);
+
+        // Restore the view
+        v.destroyDrawingCache();
+        v.setWillNotCacheDrawing(willNotCache);
+        v.setDrawingCacheBackgroundColor(color);
+
+        return bitmap;
+    }
+
     class LlenarArrays extends AsyncTask<String, String, Void> {
 
         @Override
@@ -286,10 +335,10 @@ public class Principal extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
+        switch (requestCode) {
             case HELZIO_DATE_DIALOG:
                 if (resultCode == RESULT_OK) {
-                    viewPager.setCurrentItem(data.getExtras().getInt("NUMERO_DE_MES"));
+                    viewPager.setCurrentItem(data.getExtras().getInt("NUMERO_DE_MES"), true);
                 }
                 break;
         }

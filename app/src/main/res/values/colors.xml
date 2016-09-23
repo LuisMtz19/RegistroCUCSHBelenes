@@ -17,4 +17,5 @@
     <color name="no_select">#9E9E9E</color>
     <color name="ripple_dark">@color/mid_grey</color>
     <color name="scrim">#99323232</color>
+    <color name="transparente">#00000000</color>
 </resources>

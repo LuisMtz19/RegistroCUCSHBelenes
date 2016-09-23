@@ -21,7 +21,6 @@
     </style>
 
     <style name="AppTheme.Translucent">
-        <!-- using a semi-transparent window background for the drag-back gesture -->
         <item name="android:windowBackground">@color/scrim</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -35,6 +34,9 @@
         <item name="android:windowAllowReturnTransitionOverlap">false</item>
         <item name="android:colorControlActivated">?android:colorAccent</item>
         <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="AppTheme.Translucent.DialogEventos">
     </style>
 
     <style name="ActionBarMenuButton">
@@ -95,6 +97,7 @@
     </style>
 
     <style name="LinearLayoutDias">
+        <item name="android:stateListAnimator">@animator/raise</item>
         <item name="layout_columnWeight">1</item>
         <item name="android:onClick">clickbotones</item>
         <item name="android:layout_marginTop">1px</item>
