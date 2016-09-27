@@ -15,4 +15,5 @@
     <string name="cancelar">CANCELAR</string>
     <string name="ir_a_la_fecha_seleccionada">Ir a la Fecha Seleccionada</string>
     <string name="ir_a_fecha">Ir a la fecha seleccionada</string>
+    <string name="presiona_aqu_para_registrar_otro_evento">Presiona aquí para registrar otro evento.</string>
 </resources>

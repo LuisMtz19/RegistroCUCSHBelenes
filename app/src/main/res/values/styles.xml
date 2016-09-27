@@ -36,8 +36,6 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
-    <style name="AppTheme.Translucent.DialogEventos">
-    </style>
 
     <style name="ActionBarMenuButton">
         <item name="android:layout_width">?actionBarSize</item>

@@ -206,9 +206,53 @@ public class Principal extends AppCompatActivity {
     }
 
     public void clickbotones(final View view) {
+
         if (!((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString().equals("") ){
             Intent intent = new Intent(Principal.this, DialogEventosHelzio.class);
-            intent.putExtra("TAG", view.getTag().toString().replaceFirst("null", ""));
+            intent.putExtra("NOMBRE_DIA", getResources().getResourceEntryName(view.getId()));
+            intent.putExtra("DIA_MES", ((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString());
+
+            //BOLEAN PARA SABER SI ESTAMOS CLICKEANDO EL DIA DE HOY Y COLOREAR EL TEXTO EN EL DIALOG
+            if (viewPager.getCurrentItem() == irHoyMes && Integer.parseInt(((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString()) == irHoyNumeroDiaMes){
+                intent.putExtra("ES_HOY", true);
+            }else {
+                intent.putExtra("ES_HOY", false);
+            }
+
+            //BOOLEAN PARA SABER SI SE PUEDE REGISTRAR O NO
+            //SI ESTAMOS EN UN MES ANTERIOR AL ACTUAL NO SE PUEDE REGISTRAR
+            if (viewPager.getCurrentItem() < irHoyMes){
+                intent.putExtra("REGISTRAR", false);
+            }
+            //SI ESTAMOS EN EL MISMO MES
+            else if (viewPager.getCurrentItem() == irHoyMes){
+                //SI EL DIA DEL MES ES ANTERIOR AL DIA DE HOY NO PODEMOS REGISTRAR
+                if (Integer.parseInt(((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString()) < irHoyNumeroDiaMes){
+                    intent.putExtra("REGISTRAR", false);
+                }
+                //SI EL DIA DEL MES ES HOY NO SE PUEDE AGENDAR DESPUES DE LAS 6PM
+                else if (Integer.parseInt(((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString()) == irHoyNumeroDiaMes){
+                    calendarioIrHoy = Calendar.getInstance();
+                    if (calendarioIrHoy.get(Calendar.HOUR) > 5){
+                        intent.putExtra("REGISTRAR", false);
+                    }else{
+                        intent.putExtra("REGISTRAR", true);
+                    }
+                }
+                //SI ES DESPUES DE HOY SI SE PEUDE REGISTRAR
+                else{
+                    intent.putExtra("REGISTRAR", true);
+                }
+            }
+            //SI ES EN UN MES FUTURO SE PUEDE REGISTRAR
+            else {
+                intent.putExtra("REGISTRAR", true);
+            }
+
+            try {
+                intent.putExtra("TAG", view.getTag().toString().replaceFirst("null", ""));
+                intent.putExtra("DIA_SEMANA", ((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString());
+            }catch (Exception ignored){}
             final Rect startBounds = new Rect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
             ChangeBoundBackground.addExtras(intent, getViewBitmap(view), startBounds);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Principal.this, view, "fondo");

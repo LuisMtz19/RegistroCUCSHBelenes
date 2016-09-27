@@ -174,10 +174,10 @@ public class CalendarFragment extends Fragment {
                 a = (R.drawable.fondo3);
                 break;
             case "4":
-                a = (R.drawable.fondo1);
+                a = (R.drawable.fondo4);
                 break;
             case "5":
-                a = (R.drawable.fondo2);
+                a = (R.drawable.fondo5);
                 break;
         }
         return a;

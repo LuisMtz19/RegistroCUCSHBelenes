@@ -41,7 +41,7 @@
         </activity>
 
         <activity android:name=".ui.DialogEventosHelzio"
-            android:theme="@style/AppTheme.Translucent.DialogEventos">
+            android:theme="@style/AppTheme.Translucent">
             <intent-filter>
                 <action android:name="EVENTOS_DIALOG" />
 

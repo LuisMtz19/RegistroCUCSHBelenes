@@ -7,851 +7,214 @@
     android:background="#f2efef"
     app:columnCount="7">
 
-    <LinearLayout
+    <include
+        android:id="@+id/lun1"
         style="@style/LinearLayoutDias"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mar1"
         style="@style/LinearLayoutDias"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mie1"
         style="@style/LinearLayoutDias"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/jue1"
         style="@style/LinearLayoutDias"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/vie1"
         style="@style/LinearLayoutDias"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/sab1"
         style="@style/LinearLayoutDias"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/dom1"
         style="@style/LinearLayoutDias"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/lun2"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mar2"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mie2"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/jue2"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/vie2"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/sab2"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/dom2"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/lun3"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mar3"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mie3"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/jue3"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/vie3"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/sab3"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/dom3"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/lun4"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mar4"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mie4"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/jue4"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/vie4"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/sab4"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/dom4"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/lun5"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mar5"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mie5"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/jue5"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/vie5"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/sab5"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/dom5"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/lun6"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mar6"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/mie6"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/jue6"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/vie6"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/sab6"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
+        layout="@layout/casilla" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
-
-    <LinearLayout
+    <include
+        android:id="@+id/dom6"
         style="@style/LinearLayoutDias"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <TextView style="@style/TextViewNumeroDias" />
-
-        </RelativeLayout>
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCasillaEventos" />
-
-        <TextView style="@style/TextViewCuantosMas" />
-    </LinearLayout>
+        layout="@layout/casilla" />
 
 </android.support.v7.widget.GridLayout>

@@ -49,6 +49,7 @@ public class ChangeBoundBackground extends ChangeBounds {
     private final Bitmap endBitmap;
     private final Rect startBounds;
     private final Rect endBounds;
+    private final long duration = 250L;
 
     private ChangeBoundBackground(Bitmap mStartBitmap, Rect mStartBounds, Bitmap mEndBitmap, Rect mEndBounds) {
         setPathMotion(new GravityArcMotion());
@@ -113,21 +114,21 @@ public class ChangeBoundBackground extends ChangeBounds {
         }
 
         final Animator colorFade = ObjectAnimator.ofInt(d, "alpha", fromFab ? 0 : 255);
-        colorFade.setStartDelay(fromFab ? 0 : 150);
-        colorFade.setDuration(fromFab ? 100 : 150);
-        changeBounds.setDuration(300);
+        colorFade.setStartDelay(fromFab ? 0 : duration/2);
+        colorFade.setDuration(fromFab ? duration/3 : duration/2);
+        changeBounds.setDuration(duration);
 
         final AnimatorSet transition = new AnimatorSet();
         transition.playTogether(changeBounds);
         transition.playTogether(colorFade);
         if (!fromFab) {
             Animator colorFade2 = ObjectAnimator.ofInt(e, "alpha", 0);
-            colorFade2.setDuration(150);
+            colorFade2.setDuration(duration);
             transition.playTogether(colorFade2);
         } else {
             Animator colorFade2 = ObjectAnimator.ofInt(f, "alpha", 0);
-            colorFade2.setDuration(200);
-            colorFade2.setStartDelay(100);
+            colorFade2.setDuration((duration/3) * 2);
+            colorFade2.setStartDelay(duration/3);
             transition.playTogether(colorFade2);
         }
         transition.setInterpolator(interpolator);
@@ -141,6 +142,11 @@ public class ChangeBoundBackground extends ChangeBounds {
             @Override
             public void onAnimationEnd(Animator animator) {
                 fromFab = !fromFab;
+                if (!fromFab){
+                    endValues.view.getOverlay().clear();
+                    startValues.view.getOverlay().clear();
+                }
+
             }
 
             @Override
