@@ -16,16 +16,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Pair;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class Principal extends AppCompatActivity {
     @BindView(R.id.principal_coordinatorlayout)
     CoordinatorLayout coordinator;
 
-    private ArrayList<String> lista_eventos = new ArrayList<>();
+    protected static ArrayList<String> lista_eventos = new ArrayList<>();
     private final String SHARED_TEXT_SIZE = "texto_compartido";
     private static boolean wifiConnected = false;
     private static boolean mobileConnected = false;
@@ -58,6 +57,7 @@ public class Principal extends AppCompatActivity {
     private Handler handler;
 
     static final int HELZIO_DATE_DIALOG = 13;
+    static final int HELZIO_ELIMINAR_EVENTO = 4;
     protected static int irHoyMes;
     protected static int irHoyDiaSemana;
     protected static int irHoyNumeroDiaMes;
@@ -66,13 +66,17 @@ public class Principal extends AppCompatActivity {
 
     protected static String[] eventos2016;
     private String st_eventos_guardados = "";
-    private String stNuevoId = "";
+    protected static String stNuevoId = "";
 
     private TextView tv_header2;
     private TextView tv_conexion;
 
     protected static ViewPager viewPager;
     private SharedPreferences prefs;
+    protected static String titulos = "";
+    protected static String tiposDeEvento = "";
+    protected static String nombresOrganizador = "";
+    private boolean pagerIniciado = false;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -194,6 +198,27 @@ public class Principal extends AppCompatActivity {
             prefs.edit().putString("EVENTOS GUARDADOS", st_eventos_guardados).apply();
             new LlenarArrays().execute();
         }
+
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeInfo = connMgr.getActiveNetworkInfo();
+        if (activeInfo != null && activeInfo.isConnected()) {
+            wifiConnected = activeInfo.getType() == ConnectivityManager.TYPE_WIFI;
+            mobileConnected = activeInfo.getType() == ConnectivityManager.TYPE_MOBILE;
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (wifiConnected) {
+                        new DescargarBD().execute("http://148.202.6.72/aplicacion/datos2.txt", Principal.this);
+                    }else if (mobileConnected) {
+                        tv_conexion.setText("Hay un problema con la conexión a la base de datos. Verifica tu conexión a internet.");
+                    }
+                }
+            },500);
+        }/* else {
+            DESAPARECER FAB BUTTON CALENDARIO Y APARECER FAB BUTON ACTUALIZAR
+            Log.i(TAG, getString(R.string.no_wifi_or_mobile));
+        }*/
     }
 
     @OnClick(R.id.fab)
@@ -207,40 +232,50 @@ public class Principal extends AppCompatActivity {
 
     public void clickbotones(final View view) {
 
-        if (!((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString().equals("") ){
+        if (!((TextView) ((ViewGroup) ((ViewGroup) view).getChildAt(0)).getChildAt(0)).getText().toString().equals("")) {
             Intent intent = new Intent(Principal.this, DialogEventosHelzio.class);
             intent.putExtra("NOMBRE_DIA", getResources().getResourceEntryName(view.getId()));
-            intent.putExtra("DIA_MES", ((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString());
+            intent.putExtra("DIA_MES", ((TextView) ((ViewGroup) ((ViewGroup) view).getChildAt(0)).getChildAt(0)).getText().toString());
 
             //BOLEAN PARA SABER SI ESTAMOS CLICKEANDO EL DIA DE HOY Y COLOREAR EL TEXTO EN EL DIALOG
-            if (viewPager.getCurrentItem() == irHoyMes && Integer.parseInt(((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString()) == irHoyNumeroDiaMes){
+            if (viewPager.getCurrentItem() == irHoyMes && Integer.parseInt(((TextView) ((ViewGroup) ((ViewGroup) view).getChildAt(0)).getChildAt(0)).getText().toString()) == irHoyNumeroDiaMes) {
                 intent.putExtra("ES_HOY", true);
-            }else {
+            } else {
                 intent.putExtra("ES_HOY", false);
             }
 
             //BOOLEAN PARA SABER SI SE PUEDE REGISTRAR O NO
             //SI ESTAMOS EN UN MES ANTERIOR AL ACTUAL NO SE PUEDE REGISTRAR
-            if (viewPager.getCurrentItem() < irHoyMes){
+            if (viewPager.getCurrentItem() < irHoyMes) {
                 intent.putExtra("REGISTRAR", false);
             }
             //SI ESTAMOS EN EL MISMO MES
-            else if (viewPager.getCurrentItem() == irHoyMes){
+            else if (viewPager.getCurrentItem() == irHoyMes) {
                 //SI EL DIA DEL MES ES ANTERIOR AL DIA DE HOY NO PODEMOS REGISTRAR
-                if (Integer.parseInt(((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString()) < irHoyNumeroDiaMes){
+                if (Integer.parseInt(((TextView) ((ViewGroup) ((ViewGroup) view).getChildAt(0)).getChildAt(0)).getText().toString()) < irHoyNumeroDiaMes) {
                     intent.putExtra("REGISTRAR", false);
                 }
                 //SI EL DIA DEL MES ES HOY NO SE PUEDE AGENDAR DESPUES DE LAS 6PM
-                else if (Integer.parseInt(((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString()) == irHoyNumeroDiaMes){
+                else if (Integer.parseInt(((TextView) ((ViewGroup) ((ViewGroup) view).getChildAt(0)).getChildAt(0)).getText().toString()) == irHoyNumeroDiaMes) {
                     calendarioIrHoy = Calendar.getInstance();
-                    if (calendarioIrHoy.get(Calendar.HOUR) > 5){
-                        intent.putExtra("REGISTRAR", false);
-                    }else{
+                    if (calendarioIrHoy.get(Calendar.HOUR_OF_DAY) > 17) {
+                        int hora = calendarioIrHoy.get(Calendar.HOUR_OF_DAY);
+                        int minuto = calendarioIrHoy.get(Calendar.MINUTE);
+                        if (hora == 18) {
+                            if (minuto < 30) {
+                                intent.putExtra("REGISTRAR", true);
+                            } else {
+                                intent.putExtra("REGISTRAR", false);
+                            }
+                        } else {
+                            intent.putExtra("REGISTRAR", false);
+                        }
+                    } else {
                         intent.putExtra("REGISTRAR", true);
                     }
                 }
                 //SI ES DESPUES DE HOY SI SE PEUDE REGISTRAR
-                else{
+                else {
                     intent.putExtra("REGISTRAR", true);
                 }
             }
@@ -251,12 +286,13 @@ public class Principal extends AppCompatActivity {
 
             try {
                 intent.putExtra("TAG", view.getTag().toString().replaceFirst("null", ""));
-                intent.putExtra("DIA_SEMANA", ((TextView)((ViewGroup)((ViewGroup)view).getChildAt(0)).getChildAt(0)).getText().toString());
-            }catch (Exception ignored){}
+                intent.putExtra("DIA_SEMANA", ((TextView) ((ViewGroup) ((ViewGroup) view).getChildAt(0)).getChildAt(0)).getText().toString());
+            } catch (Exception ignored) {
+            }
             final Rect startBounds = new Rect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
             ChangeBoundBackground.addExtras(intent, getViewBitmap(view), startBounds);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Principal.this, view, "fondo");
-            startActivity(intent, options.toBundle());
+            startActivityForResult(intent, HELZIO_ELIMINAR_EVENTO, options.toBundle());
         }
     }
 
@@ -291,7 +327,7 @@ public class Principal extends AppCompatActivity {
         return bitmap;
     }
 
-    class LlenarArrays extends AsyncTask<String, String, Void> {
+    protected class LlenarArrays extends AsyncTask<String, String, Void> {
 
         @Override
         protected Void doInBackground(String... aa12) {
@@ -305,6 +341,17 @@ public class Principal extends AppCompatActivity {
             if (st_eventos_guardados.trim().length() > 0) {
                 for (String eventos_suelto : st_eventos_guardados.trim().split("¦")) {
                     if (!eventos_suelto.trim().equals("")) {
+
+                        if (!titulos.contains(eventos_suelto.trim().split("::")[4].trim())) {
+                            titulos += eventos_suelto.trim().split("::")[4].trim() + "¦";
+                        }
+                        if (!tiposDeEvento.contains(eventos_suelto.trim().split("::")[6].trim())) {
+                            tiposDeEvento += eventos_suelto.trim().split("::")[6].trim() + "¦";
+                        }
+                        if (!nombresOrganizador.contains(eventos_suelto.trim().split("::")[7].trim())) {
+                            nombresOrganizador += eventos_suelto.trim().split("::")[7].trim() + "¦";
+                        }
+
                         lista_eventos.add(eventos_suelto.trim() + "¦");
                     }
 
@@ -351,17 +398,36 @@ public class Principal extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            iniciarPager();
-            setListenners();
+            loopAnimando();
         }
     }
 
+    private void loopAnimando() {
+        if (!DialogEventosHelzio.animando){
+            iniciarPager();
+            setListenners();
+        }else {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loopAnimando();
+                }
+            },300);
+        }
+
+    }
+
     private void iniciarPager() {
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setOffscreenPageLimit(1);
-        viewPager.setAdapter(new HelzioAdapter(getSupportFragmentManager()));
-        viewPager.setPageMargin((int) getResources().getDimension(R.dimen.fab_size));
-        viewPager.setCurrentItem(irHoyNumeroMesAño);
+        if (!pagerIniciado){
+            viewPager = (ViewPager) findViewById(R.id.viewpager);
+            viewPager.setOffscreenPageLimit(2);
+            viewPager.setPageMargin((int) getResources().getDimension(R.dimen.fab_size));
+            viewPager.setAdapter(new HelzioAdapter(getSupportFragmentManager()));
+            viewPager.setCurrentItem(irHoyNumeroMesAño);
+            pagerIniciado = true;
+        }else {
+            viewPager.getAdapter().notifyDataSetChanged();
+        }
     }
 
     public Object getAcentColor() {
@@ -385,6 +451,10 @@ public class Principal extends AppCompatActivity {
                     viewPager.setCurrentItem(data.getExtras().getInt("NUMERO_DE_MES"), true);
                 }
                 break;
+            case HELZIO_ELIMINAR_EVENTO:
+
+                break;
         }
     }
+
 }

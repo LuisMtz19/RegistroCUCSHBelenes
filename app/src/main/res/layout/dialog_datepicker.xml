@@ -11,7 +11,7 @@
     <DatePicker xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/conteDialog"
         android:layout_width="300dp"
-        android:layout_height="370dp"
+        android:layout_height="400dp"
         android:layout_gravity="center"
         android:background="#fff" />
 

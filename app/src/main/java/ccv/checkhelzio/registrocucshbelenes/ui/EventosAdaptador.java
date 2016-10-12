@@ -1,6 +1,12 @@
 package ccv.checkhelzio.registrocucshbelenes.ui;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,13 +17,24 @@ import android.widget.TextView;
 import java.util.List;
 
 import ccv.checkhelzio.registrocucshbelenes.R;
+import ccv.checkhelzio.registrocucshbelenes.transitions.ChangeBoundBackground;
+import ccv.checkhelzio.registrocucshbelenes.transitions.ChangeBoundBackground2;
 
 public class EventosAdaptador extends RecyclerView.Adapter<EventosAdaptador.EventosViewHolder> {
 
     private List<Eventos> eventos;
 
-    public EventosAdaptador(List<Eventos> eventos) {
+    private final String auditorio1 = "Auditorio Salvador Allende";
+    private final String auditorio2 = "Auditorio Silvano Barba";
+    private final String auditorio3 = "Auditorio Carlos Ramírez";
+    private final String auditorio4 = "Auditorio Adalberto Navarro";
+    private final String auditorio5 = "Sala de Juicios Orales Mariano Otero";
+    private final int ELIMINAR_EVENTO = 4;
+    private Context mContext;
+
+    public EventosAdaptador(List<Eventos> eventos, Context context) {
         this.eventos = eventos;
+        mContext = context;
     }
 
     @Override
@@ -28,13 +45,79 @@ public class EventosAdaptador extends RecyclerView.Adapter<EventosAdaptador.Even
     }
 
     @Override
-    public void onBindViewHolder(EventosViewHolder eventosViewHolder , int position) {
-        Eventos evento = eventos.get(position);
+    public void onBindViewHolder(final EventosViewHolder eventosViewHolder , int position) {
+        final Eventos evento = eventos.get(position);
         eventosViewHolder.titulo_evento.setText(evento.getTitulo_evento());
         eventosViewHolder.nombre_org.setText(evento.getNombre_organizador());
-        eventosViewHolder.auditorio.setText(evento.getAuditorio());
+        eventosViewHolder.auditorio.setText(nombreAuditorio(evento.getAuditorio()));
         eventosViewHolder.horario.setText(evento.getHorario());
         eventosViewHolder.contenedor.setCardBackgroundColor(evento.getFondo());
+
+        eventosViewHolder.contenedor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, DialogInfoEventosHelzio.class);
+                intent.putExtra("EVENTO", evento);
+                intent.putExtra("POSITION", eventosViewHolder.getAdapterPosition());
+                final Rect startBounds = new Rect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                ChangeBoundBackground2.addExtras(intent, getViewBitmap(view), startBounds);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) mContext, view, "fondo");
+                ((Activity) mContext).startActivityForResult(intent, ELIMINAR_EVENTO, options.toBundle());
+            }
+        });
+    }
+
+    private Bitmap getViewBitmap(View v) {
+        v.clearFocus();
+        v.setPressed(false);
+
+        boolean willNotCache = v.willNotCacheDrawing();
+        v.setWillNotCacheDrawing(false);
+
+        // Reset the drawing cache background color to fully transparent
+        // for the duration of this operation
+        int color = v.getDrawingCacheBackgroundColor();
+        v.setDrawingCacheBackgroundColor(0);
+
+        if (color != 0) {
+            v.destroyDrawingCache();
+        }
+        v.buildDrawingCache();
+        Bitmap cacheBitmap = v.getDrawingCache();
+        if (cacheBitmap == null) {
+            return null;
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(cacheBitmap);
+
+        // Restore the view
+        v.destroyDrawingCache();
+        v.setWillNotCacheDrawing(willNotCache);
+        v.setDrawingCacheBackgroundColor(color);
+
+        return bitmap;
+    }
+
+    private String nombreAuditorio(String numero) {
+        String st = "";
+        switch (numero) {
+            case "1":
+                st = auditorio1;
+                break;
+            case "2":
+                st = auditorio2;
+                break;
+            case "3":
+                st = auditorio3;
+                break;
+            case "4":
+                st = auditorio4;
+                break;
+            case "5":
+                st = auditorio5;
+                break;
+        }
+        return st;
     }
 
     @Override
@@ -55,4 +138,11 @@ public class EventosAdaptador extends RecyclerView.Adapter<EventosAdaptador.Even
             contenedor = (CardView) itemView.findViewById(R.id.boton_eventos);
         }
     }
+
+    public void removeItemAtPosition(int position) {
+        eventos.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, eventos.size());
+    }
+
 }

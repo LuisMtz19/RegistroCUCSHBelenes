@@ -60,7 +60,7 @@ public class FabTransition extends Transition {
 
     private static final String EXTRA_FAB_COLOR = "EXTRA_FAB_COLOR";
     private static final String EXTRA_FAB_ICON_RES_ID = "EXTRA_FAB_ICON_RES_ID";
-    private static long DEFAULT_DURATION = 290L;
+    protected static long DEFAULT_DURATION = 290L;
     private static final String PROP_BOUNDS = "fabTransform:bounds";
     private static final String[] TRANSITION_PROPERTIES = {
             PROP_BOUNDS
@@ -105,6 +105,10 @@ public class FabTransition extends Transition {
                                  @DrawableRes int fabIconResId) {
         intent.putExtra(EXTRA_FAB_COLOR, fabColor);
         intent.putExtra(EXTRA_FAB_ICON_RES_ID, fabIconResId);
+    }
+
+    public static void setCustomDuration(long duration){
+        DEFAULT_DURATION = duration;
     }
 
     /**

@@ -40,10 +40,40 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.DateDialogHelzioRegistrar"
+            android:theme="@style/AppTheme.Translucent">
+            <intent-filter>
+                <action android:name="DATE_DIALOG_REGISTRAR" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".ui.DialogEventosHelzio"
+            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/AppTheme.Translucent">
             <intent-filter>
                 <action android:name="EVENTOS_DIALOG" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.DialogInfoEventosHelzio"
+            android:windowSoftInputMode="adjustNothing"
+            android:theme="@style/AppTheme.Transparent">
+            <intent-filter>
+                <action android:name="INFO_EVENTOS_DIALOG" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.EditarEvento"
+            android:windowSoftInputMode="adjustNothing"
+            android:theme="@style/AppTheme.Transparent">
+            <intent-filter>
+                <action android:name="EDITAR_EVENTO" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

@@ -19,6 +19,11 @@ public class HelzioAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
+    @Override
     public Fragment getItem(int position) {
         return CalendarFragment.init(position);
     }

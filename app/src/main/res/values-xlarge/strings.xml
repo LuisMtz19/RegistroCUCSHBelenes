@@ -9,4 +9,6 @@
     <string name="viernes">viernes</string>
     <string name="sabado">sábado</string>
     <string name="domingo">domingo</string>
+    <string name="toca_resgitrar_evento">Presiona aquí para registrar otro evento.</string>
+    <string name="no_eventos_registra">No hay eventos registrados este día. Presiona para registrar uno.</string>
 </resources>
