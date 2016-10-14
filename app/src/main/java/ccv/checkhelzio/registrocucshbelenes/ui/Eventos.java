@@ -1,6 +1,8 @@
 package ccv.checkhelzio.registrocucshbelenes.ui;
 
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.io.Serializable;
 
@@ -8,102 +10,74 @@ import java.io.Serializable;
  * Created by check on 23/09/2016.
  */
 
-public class Eventos implements Serializable{
-    String horario;
-    int fondo;
-    String hora_inicial;
-    String hora_final;
-    String fecha_inicial;
-    String fecha_final;
-    String titulo_evento;
-    String auditorio;
-    String tipo_evento;
-    String nombre_organizador;
-    String numero_tel;
-    String quien_registro;
-    String cuando_registro;
-    String notas;
-    String repeticion;
+public class Eventos implements Parcelable {
+    private String fecha;
+    private String horaInicial;
+    private String horaFinal;
+    private String titulo;
+    private String auditorio;
+    private String tipoEvento;
+    private String nombreOrganizador;
+    private String numTelOrganizador;
+    private String statusEvento;
+    private String quienR;
+    private String cuandoR;
+    private String notas;
     String id;
-    String tag;
+    private String tag;
+    private int fondo;
 
-    public Eventos(String horario, int fondo, String hora_inicial, String hora_final, String fecha_inicial, String fecha_final, String titulo_evento, String auditorio, String tipo_evento, String nombre_organizador, String numero_tel, String quien_registro, String cuando_registro, String notas, String repeticion, String id, String tag) {
-        this.horario = horario;
-        this.fondo = fondo;
-        this.hora_inicial = hora_inicial;
-        this.hora_final = hora_final;
-        this.fecha_inicial = fecha_inicial;
-        this.fecha_final = fecha_final;
-        this.titulo_evento = titulo_evento;
+    Eventos(String fecha, String horaInicial, String horaFinal, String titulo, String auditorio, String tipoEvento, String nombreOrganizador, String numTelOrganizador, String statusEvento, String quienR, String cuandoR, String notas, String id, String tag, int fondo) {
+        this.fecha = fecha;
+        this.horaInicial = horaInicial;
+        this.horaFinal = horaFinal;
+        this.titulo = titulo;
         this.auditorio = auditorio;
-        this.tipo_evento = tipo_evento;
-        this.nombre_organizador = nombre_organizador;
-        this.numero_tel = numero_tel;
-        this.quien_registro = quien_registro;
-        this.cuando_registro = cuando_registro;
+        this.tipoEvento = tipoEvento;
+        this.nombreOrganizador = nombreOrganizador;
+        this.numTelOrganizador = numTelOrganizador;
+        this.statusEvento = statusEvento;
+        this.quienR = quienR;
+        this.cuandoR = cuandoR;
         this.notas = notas;
-        this.repeticion = repeticion;
         this.id = id;
         this.tag = tag;
-    }
-
-    public String getHorario() {
-        return horario;
-    }
-
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
-
-    public int getFondo() {
-        return fondo;
-    }
-
-    public void setFondo(int fondo) {
         this.fondo = fondo;
     }
 
-    public String getHora_inicial() {
-        return hora_inicial;
+    String getFecha() {
+        return fecha;
     }
 
-    public void setHora_inicial(String hora_inicial) {
-        this.hora_inicial = hora_inicial;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public String getHora_final() {
-        return hora_final;
+    public String getHoraInicial() {
+        return horaInicial;
     }
 
-    public void setHora_final(String hora_final) {
-        this.hora_final = hora_final;
+    public void setHoraInicial(String horaInicial) {
+        this.horaInicial = horaInicial;
     }
 
-    public String getFecha_inicial() {
-        return fecha_inicial;
+    String getHoraFinal() {
+        return horaFinal;
     }
 
-    public void setFecha_inicial(String fecha_inicial) {
-        this.fecha_inicial = fecha_inicial;
+    public void setHoraFinal(String horaFinal) {
+        this.horaFinal = horaFinal;
     }
 
-    public String getFecha_final() {
-        return fecha_final;
+    String getTitulo() {
+        return titulo;
     }
 
-    public void setFecha_final(String fecha_final) {
-        this.fecha_final = fecha_final;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getTitulo_evento() {
-        return titulo_evento;
-    }
-
-    public void setTitulo_evento(String titulo_evento) {
-        this.titulo_evento = titulo_evento;
-    }
-
-    public String getAuditorio() {
+    String getAuditorio() {
         return auditorio;
     }
 
@@ -111,44 +85,52 @@ public class Eventos implements Serializable{
         this.auditorio = auditorio;
     }
 
-    public String getTipo_evento() {
-        return tipo_evento;
+    public String getTipoEvento() {
+        return tipoEvento;
     }
 
-    public void setTipo_evento(String tipo_evento) {
-        this.tipo_evento = tipo_evento;
+    public void setTipoEvento(String tipoEvento) {
+        this.tipoEvento = tipoEvento;
     }
 
-    public String getNombre_organizador() {
-        return nombre_organizador;
+    String getNombreOrganizador() {
+        return nombreOrganizador;
     }
 
-    public void setNombre_organizador(String nombre_organizador) {
-        this.nombre_organizador = nombre_organizador;
+    public void setNombreOrganizador(String nombreOrganizador) {
+        this.nombreOrganizador = nombreOrganizador;
     }
 
-    public String getNumero_tel() {
-        return numero_tel;
+    public String getNumTelOrganizador() {
+        return numTelOrganizador;
     }
 
-    public void setNumero_tel(String numero_tel) {
-        this.numero_tel = numero_tel;
+    public void setNumTelOrganizador(String numTelOrganizador) {
+        this.numTelOrganizador = numTelOrganizador;
     }
 
-    public String getQuien_registro() {
-        return quien_registro;
+    String getStatusEvento() {
+        return statusEvento;
     }
 
-    public void setQuien_registro(String quien_registro) {
-        this.quien_registro = quien_registro;
+    public void setStatusEvento(String statusEvento) {
+        this.statusEvento = statusEvento;
     }
 
-    public String getCuando_registro() {
-        return cuando_registro;
+    public String getQuienR() {
+        return quienR;
     }
 
-    public void setCuando_registro(String cuando_registro) {
-        this.cuando_registro = cuando_registro;
+    public void setQuienR(String quienR) {
+        this.quienR = quienR;
+    }
+
+    public String getCuandoR() {
+        return cuandoR;
+    }
+
+    public void setCuandoR(String cuandoR) {
+        this.cuandoR = cuandoR;
     }
 
     public String getNotas() {
@@ -157,14 +139,6 @@ public class Eventos implements Serializable{
 
     public void setNotas(String notas) {
         this.notas = notas;
-    }
-
-    public String getRepeticion() {
-        return repeticion;
-    }
-
-    public void setRepeticion(String repeticion) {
-        this.repeticion = repeticion;
     }
 
     public String getId() {
@@ -182,4 +156,86 @@ public class Eventos implements Serializable{
     public void setTag(String tag) {
         this.tag = tag;
     }
+
+    public int getFondo() {
+        return fondo;
+    }
+
+    protected String aTag(){
+        String t = "";
+
+        t += this.fecha + "::";
+        t += this.horaInicial + "::";
+        t += this.horaFinal + "::";
+        t += this.titulo + "::";
+        t += this.auditorio + "::";
+        t += this.tipoEvento + "::";
+        t += this.nombreOrganizador + "::";
+        t += this.numTelOrganizador + "::";
+        t += this.statusEvento + "::";
+        t += this.quienR + "::";
+        t += this.cuandoR + "::";
+        t += this.notas + "::";
+        t += this.id;
+
+        return t;
+    }
+
+    public void setFondo(int fondo) {
+        this.fondo = fondo;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.fecha);
+        dest.writeString(this.horaInicial);
+        dest.writeString(this.horaFinal);
+        dest.writeString(this.titulo);
+        dest.writeString(this.auditorio);
+        dest.writeString(this.tipoEvento);
+        dest.writeString(this.nombreOrganizador);
+        dest.writeString(this.numTelOrganizador);
+        dest.writeString(this.statusEvento);
+        dest.writeString(this.quienR);
+        dest.writeString(this.cuandoR);
+        dest.writeString(this.notas);
+        dest.writeString(this.id);
+        dest.writeString(this.tag);
+        dest.writeInt(this.fondo);
+    }
+
+    private Eventos(Parcel in) {
+        this.fecha = in.readString();
+        this.horaInicial = in.readString();
+        this.horaFinal = in.readString();
+        this.titulo = in.readString();
+        this.auditorio = in.readString();
+        this.tipoEvento = in.readString();
+        this.nombreOrganizador = in.readString();
+        this.numTelOrganizador = in.readString();
+        this.statusEvento = in.readString();
+        this.quienR = in.readString();
+        this.cuandoR = in.readString();
+        this.notas = in.readString();
+        this.id = in.readString();
+        this.tag = in.readString();
+        this.fondo = in.readInt();
+    }
+
+    public static final Parcelable.Creator<Eventos> CREATOR = new Parcelable.Creator<Eventos>() {
+        @Override
+        public Eventos createFromParcel(Parcel source) {
+            return new Eventos(source);
+        }
+
+        @Override
+        public Eventos[] newArray(int size) {
+            return new Eventos[size];
+        }
+    };
 }

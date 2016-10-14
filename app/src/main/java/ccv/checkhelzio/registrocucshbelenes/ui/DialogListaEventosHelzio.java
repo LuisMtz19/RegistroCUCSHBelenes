@@ -2,9 +2,8 @@ package ccv.checkhelzio.registrocucshbelenes.ui;
 
 import android.animation.Animator;
 import android.app.Activity;
-import android.content.Context;
+import android.app.ActivityOptions;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -13,9 +12,8 @@ import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Fade;
-import android.transition.Slide;
+import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,10 +22,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ccv.checkhelzio.registrocucshbelenes.R;
 import ccv.checkhelzio.registrocucshbelenes.transitions.ChangeBoundBackground;
+import ccv.checkhelzio.registrocucshbelenes.transitions.FabTransition;
 
-public class DialogEventosHelzio extends Activity {
+public class DialogListaEventosHelzio extends Activity {
 
     @BindView(R.id.fondo) RelativeLayout fondo;
     @BindView(R.id.recycle) RecyclerView rvEventos;
@@ -39,6 +39,7 @@ public class DialogEventosHelzio extends Activity {
     private  EventosAdaptador adaptador;
     protected static Boolean animando = false;
     private Handler handler;
+    private static int REGISTRAR = 1313;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class DialogEventosHelzio extends Activity {
             @Override
             public void run() {
                 final Rect endBounds = new Rect(fondo.getLeft(), fondo.getTop(), fondo.getRight(), fondo.getBottom());
-                ChangeBoundBackground.setup(DialogEventosHelzio.this, fondo, true, endBounds, getViewBitmap(fondo));
+                ChangeBoundBackground.setup(DialogListaEventosHelzio.this, fondo, true, endBounds, getViewBitmap(fondo));
                 getWindow().getSharedElementEnterTransition();
                 startPostponedEnterTransition();
             }
@@ -71,52 +72,11 @@ public class DialogEventosHelzio extends Activity {
 
     private void inicializarDatos() {
         try {
-            String tag = getIntent().getStringExtra("TAG");
-            listaEventos = new ArrayList<>();
-            for (int zz = 0; zz < tag.split("¦").length; zz++) {
-                if (!tag.split("¦")[zz].contains("X~") || !tag.split("¦")[zz].trim().equals("")) {
-                    listaEventos.add(
-                            new Eventos(
-                                    // horarios
-                                    horasATetxto(Integer.valueOf(tag.split("¦")[zz].split("::")[0].trim())) + " - " + horasATetxto(Integer.valueOf(tag.split("¦")[zz].split("::")[1].trim()) + 1),
-                                    // fondo
-                                    fondoAuditorio(tag.split("¦")[zz].split("::")[5].trim()),
-                                    // hora inicial
-                                    tag.split("¦")[zz].split("::")[0].trim(),
-                                    // hora final
-                                    tag.split("¦")[zz].split("::")[1].trim(),
-                                    // fecha inicial
-                                    tag.split("¦")[zz].split("::")[2].trim(),
-                                    // fecha final
-                                    tag.split("¦")[zz].split("::")[3].trim(),
-                                    // titulo del evento
-                                    tag.split("¦")[zz].split("::")[4].trim(),
-                                    // auditorio
-                                    tag.split("¦")[zz].split("::")[5].trim(),
-                                    // tipo de evento
-                                    tag.split("¦")[zz].split("::")[6].trim(),
-                                    // nombre del organizador
-                                    tag.split("¦")[zz].split("::")[7].trim(),
-                                    // numero de telefono
-                                    tag.split("¦")[zz].split("::")[8].trim(),
-                                    // quien registro
-                                    tag.split("¦")[zz].split("::")[9].trim(),
-                                    // cuando registro
-                                    tag.split("¦")[zz].split("::")[10].trim(),
-                                    // notas
-                                    tag.split("¦")[zz].split("::")[11].trim(),
-                                    // repeticion
-                                    tag.split("¦")[zz].split("::")[12].trim(),
-                                    // id
-                                    tag.split("¦")[zz].split("::")[13].trim(),
-                                    // tag
-                                    tag.split("¦")[zz]
-                                    ));
-                }
-            }
+            listaEventos = getIntent().getParcelableArrayListExtra("LISTA_EVENTOS");
 
             if (listaEventos.size() > 0){
                 tv_mensaje_no_eventos.setVisibility(View.GONE);
+                Log.v("TAMAÑO LISTA", "" + listaEventos.get(0).getFondo());
                 if (getIntent().getBooleanExtra("REGISTRAR", false)){
                     tv_mensaje_con_eventos.setText(R.string.toca_resgitrar_evento);
                     tv_mensaje_con_eventos.setTextColor(Color.BLACK);
@@ -126,20 +86,22 @@ public class DialogEventosHelzio extends Activity {
                 }else {
                     tv_mensaje_con_eventos.setVisibility(View.GONE);
                 }
+            }else {
+                tv_mensaje_con_eventos.setVisibility(View.GONE);
+                tv_mensaje_no_eventos.setVisibility(View.VISIBLE);
+                if (getIntent().getBooleanExtra("REGISTRAR", false)){
+                    tv_mensaje_no_eventos.setText(R.string.no_eventos_registra);
+                    tv_mensaje_no_eventos.setTextColor(Color.BLACK);
+                    tv_num_dia.setTextColor(Color.BLACK);
+                    tv_nom_dia.setTextColor(Color.BLACK);
+                }else {
+                    tv_mensaje_no_eventos.setText("No hay eventos registrados este día.");
+                }
             }
             iniciarAdaptador();
 
         }catch (Exception ignored){
-            tv_mensaje_con_eventos.setVisibility(View.GONE);
-            tv_mensaje_no_eventos.setVisibility(View.VISIBLE);
-            if (getIntent().getBooleanExtra("REGISTRAR", false)){
-                tv_mensaje_no_eventos.setText(R.string.no_eventos_registra);
-                tv_mensaje_no_eventos.setTextColor(Color.BLACK);
-                tv_num_dia.setTextColor(Color.BLACK);
-                tv_nom_dia.setTextColor(Color.BLACK);
-            }else {
-                tv_mensaje_no_eventos.setText("No hay eventos registrados este día.");
-            }
+
         }
 
         if (getIntent().getBooleanExtra("ES_HOY", false)){
@@ -150,58 +112,19 @@ public class DialogEventosHelzio extends Activity {
         }
     }
 
+    @OnClick ({R.id.tv_mensaje_con_evento, R.id.tv_mensaje_no_evento})
+    public void RegistrarEvento(){
+        if (getIntent().getBooleanExtra("REGISTRAR", false)){
+            Intent intent = new Intent(this, RegistrarEvento.class);
+            intent.putExtra("DIA_AÑO", getIntent().getIntExtra("DIA_AÑO", 0));
+            Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            startActivityForResult(intent, REGISTRAR, bundle);
+        }
+    }
+
     private void iniciarAdaptador() {
-        adaptador = new EventosAdaptador(listaEventos, DialogEventosHelzio.this);
+        adaptador = new EventosAdaptador(listaEventos, DialogListaEventosHelzio.this);
         rvEventos.setAdapter(adaptador);
-    }
-
-    private int fondoAuditorio(String numero) {
-        int st = 0;
-        switch (numero) {
-            case "1":
-                st = getResources().getColor(R.color.ed_a);
-                break;
-            case "2":
-                st = getResources().getColor(R.color.ed_b);
-                break;
-            case "3":
-                st = getResources().getColor(R.color.ed_c);
-                break;
-            case "4":
-                st = getResources().getColor(R.color.ed_d);
-                break;
-            case "5":
-                st = getResources().getColor(R.color.ed_e);
-                break;
-        }
-        return st;
-    }
-
-    private String horasATetxto(int numero) {
-        String am_pm, st_min, st_hora;
-
-        int hora = (numero / 2) + 7;
-        if (hora > 12) {
-            hora = hora - 12;
-            am_pm = " PM";
-        } else {
-            am_pm = " AM";
-        }
-
-        if (hora < 10) {
-            st_hora = "0" + hora;
-        } else {
-            st_hora = "" + hora;
-        }
-
-        if (numero % 2 == 0) {
-            st_min = "00";
-        } else {
-            st_min = "30";
-        }
-
-        return st_hora + ":" + st_min + am_pm;
-
     }
 
     @Override

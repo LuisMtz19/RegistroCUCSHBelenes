@@ -5,7 +5,6 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import ccv.checkhelzio.registrocucshbelenes.R;
-import ccv.checkhelzio.registrocucshbelenes.transitions.ChangeBoundBackground;
 import ccv.checkhelzio.registrocucshbelenes.transitions.ChangeBoundBackground2;
 
 public class EventosAdaptador extends RecyclerView.Adapter<EventosAdaptador.EventosViewHolder> {
@@ -47,10 +45,10 @@ public class EventosAdaptador extends RecyclerView.Adapter<EventosAdaptador.Even
     @Override
     public void onBindViewHolder(final EventosViewHolder eventosViewHolder , int position) {
         final Eventos evento = eventos.get(position);
-        eventosViewHolder.titulo_evento.setText(evento.getTitulo_evento());
-        eventosViewHolder.nombre_org.setText(evento.getNombre_organizador());
+        eventosViewHolder.titulo_evento.setText(evento.getTitulo());
+        eventosViewHolder.nombre_org.setText(evento.getNombreOrganizador());
         eventosViewHolder.auditorio.setText(nombreAuditorio(evento.getAuditorio()));
-        eventosViewHolder.horario.setText(evento.getHorario());
+        eventosViewHolder.horario.setText(horasATetxto(Integer.parseInt(evento.getHoraInicial().replaceAll("[^0-9]+",""))) + " - " + horasATetxto(Integer.parseInt(evento.getHoraFinal().replaceAll("[^0-9]+",""))));
         eventosViewHolder.contenedor.setCardBackgroundColor(evento.getFondo());
 
         eventosViewHolder.contenedor.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +63,34 @@ public class EventosAdaptador extends RecyclerView.Adapter<EventosAdaptador.Even
                 ((Activity) mContext).startActivityForResult(intent, ELIMINAR_EVENTO, options.toBundle());
             }
         });
+
+    }
+
+    private String horasATetxto(int numero) {
+        String am_pm, st_min, st_hora;
+
+        int hora = (numero / 2) + 7;
+        if (hora > 12) {
+            hora = hora - 12;
+            am_pm = " PM";
+        } else {
+            am_pm = " AM";
+        }
+
+        if (hora < 10) {
+            st_hora = "0" + hora;
+        } else {
+            st_hora = "" + hora;
+        }
+
+        if (numero % 2 == 0) {
+            st_min = "00";
+        } else {
+            st_min = "30";
+        }
+
+        return st_hora + ":" + st_min + am_pm;
+
     }
 
     private Bitmap getViewBitmap(View v) {

@@ -35,12 +35,10 @@ public class DateDialogHelzioRegistrar extends Activity {
         ButterKnife.bind(this);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2016, 0, 1);
-        if (getIntent().getStringExtra("M").equals("Fecha final:")){
-            calendar.set(Calendar.DAY_OF_YEAR, getIntent().getIntExtra("MIN_DIA", 0));
-        }
         datePicker.setMinDate(calendar.getTimeInMillis());
         datePicker.setFirstDayOfWeek(Calendar.MONDAY);
+
+        calendar.set(2016,0,1);
         calendar.set(Calendar.DAY_OF_YEAR, getIntent().getIntExtra("DIA", 0));
         datePicker.updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         titulo.setText(getIntent().getStringExtra("M"));
@@ -65,21 +63,23 @@ public class DateDialogHelzioRegistrar extends Activity {
         Calendar c = Calendar.getInstance();
         c.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
 
-        int dia_de_año;
-        if (datePicker.getYear() == 2016) {
-            dia_de_año = c.get(Calendar.DAY_OF_YEAR);
-        } else {
-            dia_de_año = c.get(Calendar.DAY_OF_YEAR);
-            for (int x = 2016; x < datePicker.getYear(); x++) {
-                c.set(x,0,1);
-                dia_de_año += c.getActualMaximum(Calendar.DAY_OF_YEAR);
+        if (c.getTimeInMillis() >= datePicker.getMinDate()){
+            int dia_de_año;
+            if (datePicker.getYear() == 2016) {
+                dia_de_año = c.get(Calendar.DAY_OF_YEAR);
+            } else {
+                dia_de_año = c.get(Calendar.DAY_OF_YEAR);
+                for (int x = 2016; x < datePicker.getYear(); x++) {
+                    c.set(x,0,1);
+                    dia_de_año += c.getActualMaximum(Calendar.DAY_OF_YEAR);
+                }
             }
-        }
 
-        Intent i = getIntent();
-        i.putExtra("DIA_DEL_AÑO", dia_de_año);
-        setResult(RESULT_OK, i);
-        cerrar(null);
+            Intent i = getIntent();
+            i.putExtra("DIA_DEL_AÑO", dia_de_año);
+            setResult(RESULT_OK, i);
+            cerrar(null);
+        }
     }
 
     @OnClick (R.id.bt_dialog_cancenlar)

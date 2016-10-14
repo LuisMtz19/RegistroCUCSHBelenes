@@ -3,7 +3,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="cerrar">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/ly"
@@ -45,12 +45,12 @@
                     android:textSize="@dimen/diez_sp" />
 
                 <TextView
-                    android:clickable="true"
                     android:id="@+id/tv_guardar_evento"
                     android:layout_width="100dp"
                     android:layout_height="56dp"
                     android:layout_alignParentEnd="true"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
                     android:gravity="center"
                     android:maxLines="1"
                     android:paddingEnd="16dp"
@@ -99,12 +99,12 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <RelativeLayout
@@ -203,17 +203,15 @@
                         android:layout_width="fill_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="8dp"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:orientation="vertical">
+                        android:background="?android:attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="18dp"
-                            android:contentDescription="@string/auditorio"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_clock" />
+                            android:src="@drawable/ic_mas" />
 
                         <TextView
                             android:layout_width="fill_parent"
@@ -223,146 +221,7 @@
                             android:maxLines="1"
                             android:paddingEnd="56dp"
                             android:paddingStart="72dp"
-                            android:text="@string/label_fecha_del_evento"
-                            android:textColor="#121212"
-                            android:textSize="@dimen/diez_sp" />
-
-                        <TextView
-                            android:id="@+id/tv_fecha_inicial"
-                            android:layout_width="fill_parent"
-                            android:layout_height="match_parent"
-                            android:clickable="true"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:gravity="center_vertical"
-                            android:hint="@string/label_tipo_de_evento2"
-                            android:maxLines="1"
-                            android:paddingEnd="72dp"
-                            android:paddingStart="72dp"
-                            android:paddingTop="10dp"
-                            android:textColor="#121212"
-                            android:textColorHint="#121212"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/tv_hora_inicial_label"
-                            android:layout_alignStart="@+id/sp_hora_inicial"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_marginTop="12dp"
-                            android:background="#00000000"
-                            android:maxLines="1"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/label_hora_inicial"
-                            android:textColor="#121212"
-                            android:textSize="@dimen/diez_sp" />
-
-                        <Spinner
-                            android:layout_alignParentEnd="true"
-                            android:id="@+id/sp_hora_inicial"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:clickable="true"
-                            android:background="?android:attr/selectableItemBackgroundBorderless"
-                            android:gravity="center_vertical"
-                            android:hint="@string/label_tipo_de_evento2"
-                            android:maxLines="1"
-                            android:layout_marginEnd="16dp"
-                            android:paddingTop="10dp"
-                            android:textColor="#121212"
-                            android:textColorHint="#121212"
-                            android:textSize="16sp" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="56dp"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_marginTop="12dp"
-                            android:background="#00000000"
-                            android:maxLines="1"
-                            android:paddingEnd="56dp"
-                            android:paddingStart="72dp"
-                            android:text="@string/label_fecha_final"
-                            android:textColor="#121212"
-                            android:textSize="@dimen/diez_sp" />
-
-                        <TextView
-                            android:id="@+id/tv_fecha_final"
-                            android:layout_width="fill_parent"
-                            android:layout_height="match_parent"
-                            android:clickable="true"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:gravity="center_vertical"
-                            android:hint="@string/label_tipo_de_evento2"
-                            android:maxLines="1"
-                            android:paddingEnd="72dp"
-                            android:paddingStart="72dp"
-                            android:paddingTop="10dp"
-                            android:textColor="#121212"
-                            android:textColorHint="#121212"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/tv_hora_final_label"
-                            android:layout_alignStart="@+id/sp_hora_final"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_marginTop="12dp"
-                            android:background="#00000000"
-                            android:maxLines="1"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/label_hora_final"
-                            android:textColor="#121212"
-                            android:textSize="@dimen/diez_sp" />
-
-                        <Spinner
-                            android:layout_alignParentEnd="true"
-                            android:id="@+id/sp_hora_final"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:clickable="true"
-                            android:background="?android:attr/selectableItemBackgroundBorderless"
-                            android:gravity="center_vertical"
-                            android:hint="@string/label_tipo_de_evento2"
-                            android:maxLines="1"
-                            android:layout_marginEnd="16dp"
-                            android:paddingTop="10dp"
-                            android:textColor="#121212"
-                            android:textColorHint="#121212"
-                            android:textSize="16sp" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="56dp"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="18dp"
-                            android:contentDescription="@string/auditorio"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_repetir" />
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_marginTop="12dp"
-                            android:background="#00000000"
-                            android:maxLines="1"
-                            android:paddingEnd="56dp"
-                            android:paddingStart="72dp"
-                            android:text="@string/label_repe_del_evento"
+                            android:text="Fecha del evento:"
                             android:textColor="#121212"
                             android:textSize="@dimen/diez_sp" />
 
@@ -370,10 +229,10 @@
                             android:id="@+id/tv_repeticion"
                             android:layout_width="fill_parent"
                             android:layout_height="match_parent"
-                            android:clickable="true"
                             android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
                             android:gravity="center_vertical"
-                            android:hint="@string/label_tipo_de_evento2"
+                            android:hint="Agregar fecha"
                             android:maxLines="1"
                             android:paddingEnd="72dp"
                             android:paddingStart="72dp"
@@ -383,6 +242,13 @@
                             android:textSize="16sp" />
 
                     </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_fechas"
+                        app:paddingStart="72dp"
+                        app:paddingEnd="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
                     <View
                         android:layout_width="match_parent"
@@ -473,8 +339,8 @@
                             android:gravity="center_vertical"
                             android:hint="@string/label_numero_telefonico2"
                             android:imeOptions="actionDone"
-                            android:maxLines="1"
                             android:inputType="phone"
+                            android:maxLines="1"
                             android:paddingEnd="72dp"
                             android:paddingStart="72dp"
                             android:paddingTop="10dp"
@@ -528,9 +394,9 @@
                             android:gravity="center_vertical"
                             android:hint="@string/label_contrasena2"
                             android:imeOptions="actionDone"
-                            android:maxLines="1"
-                            android:maxLength="4"
                             android:inputType="numberPassword"
+                            android:maxLength="4"
+                            android:maxLines="1"
                             android:paddingEnd="72dp"
                             android:paddingStart="72dp"
                             android:paddingTop="10dp"
@@ -594,12 +460,12 @@
 
         <android.support.design.widget.CoordinatorLayout
             android:id="@+id/snackposs"
-            android:layout_centerHorizontal="true"
-            android:layout_alignBottom="@id/fondo"
-            android:layout_alignStart="@id/fondo"
-            android:layout_alignEnd="@id/fondo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/fondo"
+            android:layout_alignEnd="@id/fondo"
+            android:layout_alignStart="@id/fondo"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

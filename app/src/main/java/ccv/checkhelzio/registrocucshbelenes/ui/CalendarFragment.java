@@ -1,6 +1,10 @@
 package ccv.checkhelzio.registrocucshbelenes.ui;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,20 +17,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import ccv.checkhelzio.registrocucshbelenes.R;
+import ccv.checkhelzio.registrocucshbelenes.transitions.ChangeBoundBackground;
 
 import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.calendarioActualizarDiasMes;
-import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.eventos2016;
 import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.irHoyAño;
 import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.irHoyDiaSemana;
 import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.irHoyMes;
 import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.irHoyNumeroDiaMes;
+import static ccv.checkhelzio.registrocucshbelenes.ui.Principal.viewPager;
 
 
 public class CalendarFragment extends Fragment {
     int fragVal;
+    private final int HELZIO_ELIMINAR_EVENTO = 4;
     static CalendarFragment init(int val) {
         CalendarFragment truitonFrag = new CalendarFragment();
         // Supply val input as an argument.
@@ -56,7 +63,7 @@ public class CalendarFragment extends Fragment {
 
 
     private void actualizarDiasDelMes(GridLayout grid_layout, LinearLayout aba_b) {
-        int diasemana = obtenerDiaSemana(calendarioActualizarDiasMes.get(Calendar.DAY_OF_WEEK));
+        final int diasemana = obtenerDiaSemana(calendarioActualizarDiasMes.get(Calendar.DAY_OF_WEEK));
         int actuDias_Año = calendarioActualizarDiasMes.get(Calendar.YEAR);
         int dia_inicial_del_mes;
 
@@ -83,43 +90,105 @@ public class CalendarFragment extends Fragment {
         }
 
         for (int x = 1; x <= calendarioActualizarDiasMes.getActualMaximum(Calendar.DAY_OF_MONTH); x++) {
-            String st_nd = "" + x;
+            // NUMERO DE DIA DEL MES
+            final String st_nd = "" + x;
             ((TextView) ((RelativeLayout) ((LinearLayout) grid_layout.getChildAt(x - 1 + diasemana)).getChildAt(0)).getChildAt(0)).setText(st_nd);
 
-            String j = "";
-            try {
-                final String s = eventos2016[dia_inicial_del_mes - 1 + x];
+            final ArrayList<Eventos> lista_pequeña_eventos = new ArrayList<>();
+            for (Eventos evento_suelto : Principal.lista_eventos){
+                if (Integer.parseInt(evento_suelto.getFecha().replaceAll("[^0-9]+","")) == dia_inicial_del_mes - 1 + x && !evento_suelto.getStatusEvento().equals("X")){
+                    lista_pequeña_eventos.add(evento_suelto);
+                }
+            }
 
-                if (s != null) {
-                    for (String ev_suelto : s.split("¦")) {
-                        if (!ev_suelto.contains("X~")) {
-                            if (!ev_suelto.equals("")) {
-                                j += ev_suelto + "¦";
+            int i = 1;
+            for (Eventos eve : lista_pequeña_eventos) {
+                if (i == 1 || i ==2) {
+                    ((TextView) ((LinearLayout) grid_layout.getChildAt(x - 1 + diasemana)).getChildAt(i)).setText(eve.getTitulo());
+                    ((LinearLayout) grid_layout.getChildAt(x - 1 + diasemana)).getChildAt(i).setBackgroundResource(getFondo(eve.getAuditorio()));
+
+                } else if (i == 3) {
+                    int cuantos = lista_pequeña_eventos.size() - 2;
+                    String cu = "" + cuantos + " más";
+                    ((TextView) ((LinearLayout) grid_layout.getChildAt(x - 1 + diasemana)).getChildAt(i)).setText(cu);
+                    break;
+                }
+                i++;
+            }
+
+            final int finalX = x;
+            final int finalDia_inicial_del_mes = dia_inicial_del_mes;
+            grid_layout.getChildAt(x - 1 + diasemana).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // INTENT A LA LISTA DE EVENTOS
+                    Intent intent = new Intent(getActivity(), DialogListaEventosHelzio.class);
+                    // PASAMOS EL NUMERO DE DIA
+                    intent.putExtra("DIA_MES", st_nd);
+
+                    // PASAMOS EL NUMERO DE DIA DESDE EL 2016
+                    intent.putExtra("DIA_AÑO", (finalDia_inicial_del_mes - 1 + finalX));
+
+                    // PASAMOS EL NOMBRE DEL DIA
+                    String st_dia_semana = "" + (finalX - 1 + diasemana);
+                    intent.putExtra("NOMBRE_DIA", view.getResources().getResourceEntryName(view.getId()));
+
+                    // PASAMOS LA LISTA DE EVENTOS
+                    intent.putExtra("LISTA_EVENTOS", lista_pequeña_eventos);
+
+                    //BOLEAN PARA SABER SI ESTAMOS CLICKEANDO EL DIA DE HOY Y COLOREAR EL TEXTO EN EL DIALOG
+                    if (fragVal == irHoyMes && finalX == irHoyNumeroDiaMes) {
+                        intent.putExtra("ES_HOY", true);
+                    } else {
+                        intent.putExtra("ES_HOY", false);
+                    }
+
+                    //BOOLEAN PARA SABER SI SE PUEDE REGISTRAR O NO
+                    //SI ESTAMOS EN UN MES ANTERIOR AL ACTUAL NO SE PUEDE REGISTRAR
+                    if (fragVal < irHoyMes) {
+                        intent.putExtra("REGISTRAR", false);
+                    }
+                    //SI ESTAMOS EN EL MISMO MES
+                    else if (fragVal == irHoyMes) {
+                        //SI EL DIA DEL MES ES ANTERIOR AL DIA DE HOY NO PODEMOS REGISTRAR
+                        if (finalX < irHoyNumeroDiaMes) {
+                            intent.putExtra("REGISTRAR", false);
+                        }
+                        //SI EL DIA DEL MES ES HOY NO SE PUEDE AGENDAR DESPUES DE LAS 6PM
+                        else if (finalX == irHoyNumeroDiaMes) {
+                            Calendar calendarioIrHoy = Calendar.getInstance();
+                            if (calendarioIrHoy.get(Calendar.HOUR_OF_DAY) > 17) {
+                                int hora = calendarioIrHoy.get(Calendar.HOUR_OF_DAY);
+                                int minuto = calendarioIrHoy.get(Calendar.MINUTE);
+                                if (hora == 18) {
+                                    if (minuto < 30) {
+                                        intent.putExtra("REGISTRAR", true);
+                                    } else {
+                                        intent.putExtra("REGISTRAR", false);
+                                    }
+                                } else {
+                                    intent.putExtra("REGISTRAR", false);
+                                }
+                            } else {
+                                intent.putExtra("REGISTRAR", true);
                             }
                         }
-                    }
-                }
-
-                if (!j.trim().equals("")) {
-                    int i = 1;
-                    for (final String eve : j.split("¦")) {
-                        if (i == 1 || i ==2) {
-                            ((TextView) ((LinearLayout) grid_layout.getChildAt(x - 1 + diasemana)).getChildAt(i)).setText(eve.split("::")[4].trim());
-                            ((LinearLayout) grid_layout.getChildAt(x - 1 + diasemana)).getChildAt(i).setBackgroundResource(getFondo(eve.split("::")[5].trim()));
-
-                        } else if (i == 3) {
-                            int cuantos = j.split("¦").length - 2;
-                            String cu = "" + cuantos + " más";
-                            ((TextView) ((LinearLayout) grid_layout.getChildAt(x - 1 + diasemana)).getChildAt(i)).setText(cu);
-                            break;
+                        //SI ES DESPUES DE HOY SI SE PEUDE REGISTRAR
+                        else {
+                            intent.putExtra("REGISTRAR", true);
                         }
-                        i++;
                     }
-                    grid_layout.getChildAt(x - 1 + diasemana).setTag(j);
-                }
-            } catch (Exception ignored) {
+                    //SI ES EN UN MES FUTURO SE PUEDE REGISTRAR
+                    else {
+                        intent.putExtra("REGISTRAR", true);
+                    }
 
-            }
+                    final Rect startBounds = new Rect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                    ChangeBoundBackground.addExtras(intent, getViewBitmap(view), startBounds);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "fondo");
+                    startActivityForResult(intent, HELZIO_ELIMINAR_EVENTO, options.toBundle());
+                }
+            });
         }
 
         for (int x = calendarioActualizarDiasMes.getActualMaximum(Calendar.DAY_OF_MONTH) + diasemana; x <= 35; x++) {
@@ -159,28 +228,6 @@ public class CalendarFragment extends Fragment {
             grid_layout.getChildAt(40).setVisibility(View.GONE);
             grid_layout.getChildAt(41).setVisibility(View.GONE);
         }
-    }
-
-    private int getFondo(String trim) {
-        int a = 0;
-        switch (trim) {
-            case "1":
-                a = (R.drawable.fondo1);
-                break;
-            case "2":
-                a = (R.drawable.fondo2);
-                break;
-            case "3":
-                a = (R.drawable.fondo3);
-                break;
-            case "4":
-                a = (R.drawable.fondo4);
-                break;
-            case "5":
-                a = (R.drawable.fondo5);
-                break;
-        }
-        return a;
     }
 
     private Integer obtenerDiaSemana(int i) {
@@ -229,4 +276,58 @@ public class CalendarFragment extends Fragment {
         getActivity().getTheme().resolveAttribute(colorAttr, outValue, true);
         return outValue.data;
     }
+
+    private Bitmap getViewBitmap(View v) {
+        v.clearFocus();
+        v.setPressed(false);
+
+        boolean willNotCache = v.willNotCacheDrawing();
+        v.setWillNotCacheDrawing(false);
+
+        // Reset the drawing cache background color to fully transparent
+        // for the duration of this operation
+        int color = v.getDrawingCacheBackgroundColor();
+        v.setDrawingCacheBackgroundColor(0);
+
+        if (color != 0) {
+            v.destroyDrawingCache();
+        }
+        v.buildDrawingCache();
+        Bitmap cacheBitmap = v.getDrawingCache();
+        if (cacheBitmap == null) {
+            return null;
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(cacheBitmap);
+
+        // Restore the view
+        v.destroyDrawingCache();
+        v.setWillNotCacheDrawing(willNotCache);
+        v.setDrawingCacheBackgroundColor(color);
+
+        return bitmap;
+    }
+
+    private int getFondo(String trim) {
+        int a = 0;
+        switch (trim) {
+            case "1":
+                a = (R.drawable.fondo1);
+                break;
+            case "2":
+                a = (R.drawable.fondo2);
+                break;
+            case "3":
+                a = (R.drawable.fondo3);
+                break;
+            case "4":
+                a = (R.drawable.fondo1);
+                break;
+            case "5":
+                a = (R.drawable.fondo2);
+                break;
+        }
+        return a;
+    }
+
 }

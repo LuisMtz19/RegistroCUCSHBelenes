@@ -61,8 +61,6 @@ public class EditarEvento extends AppCompatActivity {
     @BindView(R.id.sp_auditorios) Spinner sp_auditorios;
     @BindView(R.id.sp_hora_inicial) Spinner sp_hora_inicial;
     @BindView(R.id.sp_hora_final) Spinner sp_hora_final;
-    @BindView(R.id.tv_fecha_inicial) TextView tv_fecha_inicial;
-    @BindView(R.id.tv_fecha_final) TextView tv_fecha_final;
     @BindView(R.id.tv_repeticion) TextView tv_repeticion;
     @BindView(R.id.tv_titulo_label) TextView tv_titulo_label;
     @BindView(R.id.tv_hora_inicial_label) TextView tv_hora_inicial_label;
@@ -123,7 +121,7 @@ public class EditarEvento extends AppCompatActivity {
         iniciarObjetos();
         llenarDatos();
         stringComprobarCupos();
-        loopComprobarhoras();
+
     }
 
     private void iniciarObjetos() {
@@ -136,7 +134,7 @@ public class EditarEvento extends AppCompatActivity {
         evento = (Eventos) getIntent().getSerializableExtra("EVENTO");
 
         //TITULO DEL EVENTO
-        atv_titulo_evento.setText(evento.getTitulo_evento());
+        atv_titulo_evento.setText(evento.getTitulo());
         atv_titulo_evento.setSelection(atv_titulo_evento.getText().length());
         atv_titulo_evento.addTextChangedListener(new TextWatcher() {
             @Override
@@ -195,7 +193,7 @@ public class EditarEvento extends AppCompatActivity {
         });
 
         //TIPO DE EVENTO
-        atv_tipo_evento.setText(evento.getTipo_evento());
+        atv_tipo_evento.setText(evento.getTipoEvento());
         atv_tipo_evento.setSelection(atv_tipo_evento.getText().length());
 
         // INICIAMOS EL AUTOCOMPLETAR DE TIPOS DE EVENTO Y COLOCAMOS EL TIPO DE EVENTO CORRESPONDIENTE
@@ -230,10 +228,7 @@ public class EditarEvento extends AppCompatActivity {
         });
 
         // COLOCAMOS LA FECHA INICIAL Y FINAL DEL EVENTO Y LAS GUARDAMOS EN VARIABLES NUMERICAS
-        tv_fecha_inicial.setText(fecha(evento.getFecha_inicial()));
-        tv_fecha_final.setText(fecha(evento.getFecha_final()));
-        int_fecha_inicial = Integer.parseInt(evento.getFecha_inicial());
-        int_fecha_final = Integer.parseInt(evento.getFecha_final());
+        int_fecha_inicial = Integer.parseInt(evento.getFecha());
 
         // CONFIGURAR SPINER PARA SELECCIONAR LA HORA INICIAL Y FINAL DEL EVENTO
         String[] horas = new String[]{
@@ -272,7 +267,7 @@ public class EditarEvento extends AppCompatActivity {
 
         ArrayAdapter<String> adapterHoras = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, horas);
         sp_hora_inicial.setAdapter(adapterHoras);
-        sp_hora_inicial.setSelection(Integer.parseInt(evento.getHora_inicial()));
+        sp_hora_inicial.setSelection(Integer.parseInt(evento.getHoraInicial()));
 
         // CUANDO CAMBIA LA HORA INICIAL CAMBIA LA HORA FINAL A UNA HORA DESPUES
         sp_hora_inicial.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -292,13 +287,11 @@ public class EditarEvento extends AppCompatActivity {
         });
 
         sp_hora_final.setAdapter(adapterHoras);
-        sp_hora_final.setSelection(Integer.parseInt(evento.getHora_final()) + 1);
+        sp_hora_final.setSelection(Integer.parseInt(evento.getHoraFinal()) + 1);
 
-        //CONFIGURAR LA REPETICION DEL EVENTO
-        tv_repeticion.setText(stringRepeticion(evento.getRepeticion()));
 
         //CONFIGUAR NOMBRE DEL ORGANIZADOR
-        atv_nombre_org.setText(evento.getNombre_organizador());
+        atv_nombre_org.setText(evento.getNombreOrganizador());
         atv_nombre_org.setSelection(atv_nombre_org.getText().length());
 
         atv_nombre_org.addTextChangedListener(new TextWatcher() {
@@ -334,7 +327,7 @@ public class EditarEvento extends AppCompatActivity {
         atv_nombre_org.setAdapter(nombresOrganizadorAdapter);
 
         //CONFIGURAR NUMERO DE TELEFONO
-        et_num_tel.setText(evento.getNumero_tel());
+        et_num_tel.setText(evento.getNumTelOrganizador());
 
         // CONFIGURAMOS EL EDIT TEXT DE LA CONTRASEÑA
         tv_contraseña_label.setTextColor(Color.RED);
@@ -390,7 +383,7 @@ public class EditarEvento extends AppCompatActivity {
                 String j = "";
 
                 try {
-                    final String s = Principal.eventos2016[x];
+                    final String s = "";
 
                     if (s != null) {
                         for (String ev_suelto : s.split("¦")) {
@@ -781,24 +774,6 @@ public class EditarEvento extends AppCompatActivity {
         return repeticion;
     }
 
-    @OnClick(R.id.tv_fecha_inicial)
-    public void AbrirDialogFechaInicial() {
-        Intent intent = new Intent(this, DateDialogHelzioRegistrar.class);
-        intent.putExtra("M", "Fecha inicial:");
-        intent.putExtra("DIA", int_fecha_inicial);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivityForResult(intent, INICIAL, bundle);
-    }
-
-    @OnClick(R.id.tv_fecha_final)
-    public void AbrirDialogFechaFinal() {
-        Intent intent = new Intent(this, DateDialogHelzioRegistrar.class);
-        intent.putExtra("M", "Fecha final:");
-        intent.putExtra("DIA", int_fecha_final);
-        intent.putExtra("MIN_DIA", int_fecha_inicial);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivityForResult(intent, FINAL, bundle);
-    }
 
     @OnClick(R.id.tv_repeticion)
     public void AbrirDialogRepeticion() {
@@ -809,171 +784,6 @@ public class EditarEvento extends AppCompatActivity {
         startActivityForResult(intent, FINAL, bundle);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case INICIAL:
-                if (resultCode == RESULT_OK){
-                    int_fecha_inicial = data.getIntExtra("DIA_DEL_AÑO", 0);
-                    int_fecha_final = data.getIntExtra("DIA_DEL_AÑO", 0);
-                    String st_fecha = "" + data.getIntExtra("DIA_DEL_AÑO", 0);
-                    tv_fecha_inicial.setText(fecha(st_fecha));
-                    tv_fecha_final.setText(fecha(st_fecha));
-                }
-                break;
-            case FINAL:
-                if (resultCode == RESULT_OK){
-                    int_fecha_final = data.getIntExtra("DIA_DEL_AÑO", 0);
-                    String st_fecha = "" + data.getIntExtra("DIA_DEL_AÑO", 0);
-                    tv_fecha_final.setText(fecha(st_fecha));
-                }
-                break;
-        }
-    }
 
-    class GuardarEventoEditado extends AsyncTask<String, String, Void> {
-
-        private String st_evento_para_guardar;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            Calendar calendarioRegistro = Calendar.getInstance();
-            SimpleDateFormat format = new SimpleDateFormat("d 'de' MMMM 'del' yyyy 'a las' h:mm a");
-
-            registroCorrecto = false;
-
-            String st_nota = "Sin notas";
-            if (!et_nota.getText().toString().trim().equals("")) {
-                st_nota = et_nota.getText().toString();
-            }
-
-            st_evento_para_guardar = "" + sp_hora_inicial.getSelectedItemPosition() + "::" +
-                    sp_hora_final.getSelectedItemPosition() + "::" +
-                    //int_fecha_inicial_bd + "::" +
-                    //int_fecha_final_bd + "::" +
-                    atv_titulo_evento.getText().toString().trim() + "::" +
-                    (sp_auditorios.getSelectedItemPosition() + 1) + "::" +
-                    atv_tipo_evento.getText().toString().trim() + "::" +
-                    atv_nombre_org.getText().toString().trim() + "::" +
-                    et_num_tel.getText().toString().trim() + "::" +
-                    "R~" + st_quien + "::" +
-                    format.format(calendarioRegistro.getTime()) + "::" +
-                    st_nota.trim() + "::" +
-                    tv_repeticion.getTag().toString() + "::" +
-                    Principal.stNuevoId + "¦";
-
-            int i = 0;
-            for (String eev : Principal.lista_eventos) {
-                if (eev.equals(evento.getTag() + "¦")) {
-                    Principal.lista_eventos.set(i, st_evento_para_guardar + "¦");
-                }
-                i++;
-            }
-
-            Collections.sort(Principal.lista_eventos, new Comparator<String>() {
-                @Override
-                public int compare(String s1, String s2) {
-                    s1 = s1.replace("\uFEFF", "") + "";
-                    s2 = s2.replace("\uFEFF", "") + "";
-                    Integer i1 = Integer.parseInt("" + s1.split("::")[0].trim());
-                    Integer i2 = Integer.parseInt("" + s2.split("::")[0].trim());
-                    if (i1 == i2) {
-                        Integer i3 = Integer.parseInt("" + s1.split("::")[1].trim());
-                        Integer i4 = Integer.parseInt("" + s2.split("::")[1].trim());
-                        if (i3 == i4) {
-                            Integer i5 = Integer.parseInt("" + s1.split("::")[2].trim());
-                            Integer i6 = Integer.parseInt("" + s2.split("::")[2].trim());
-                            if (i5 == i6) {
-                                Integer i7 = Integer.parseInt("" + s1.split("::")[3].trim());
-                                Integer i8 = Integer.parseInt("" + s2.split("::")[3].trim());
-
-                                return i7.compareTo(i8);
-                            } else {
-                                return i5.compareTo(i6);
-                            }
-                        } else {
-                            return i3.compareTo(i4);
-                        }
-                    } else {
-                        return i1.compareTo(i2);
-                    }
-                }
-            });
-
-            st_eventos_guardados = "";
-            for (String item : Principal.lista_eventos) {
-                st_eventos_guardados += item;
-            }
-            data = "";
-        }
-
-        @Override
-        protected Void doInBackground(String... aa12) {
-            if (st_eventos_guardados.length() > 333) {
-                try {
-                    URL url = new URL("http://148.202.6.72/aplicacion/datos2.php");
-                    HttpURLConnection aaaaa = (HttpURLConnection) url.openConnection();
-                    aaaaa.setReadTimeout(0);
-                    aaaaa.setConnectTimeout(0);
-                    aaaaa.setRequestMethod("POST");
-                    aaaaa.setDoInput(true);
-                    aaaaa.setDoOutput(true);
-
-                    Uri.Builder builder = new Uri.Builder()
-                            .appendQueryParameter("comentarios", st_eventos_guardados);
-                    String query = builder.build().getEncodedQuery();
-
-                    OutputStream os = aaaaa.getOutputStream();
-                    BufferedWriter writer = new BufferedWriter(
-                            new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(query);
-                    writer.flush();
-                    writer.close();
-                    os.close();
-
-                    aaaaa.connect();
-
-                    int aaaaaaa = aaaaa.getResponseCode();
-                    if (aaaaaaa == HttpsURLConnection.HTTP_OK) {
-                        registroCorrecto = true;
-                        String aaaaaaaa;
-                        BufferedReader br = new BufferedReader(new InputStreamReader(aaaaa.getInputStream(), "UTF-8"));
-                        while ((aaaaaaaa = br.readLine()) != null) {
-                            data += aaaaaaaa;
-                        }
-                    } else {
-                        data = "error code: " + aaaaaaa;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            if (data.contains("error code: ") || !registroCorrecto) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        new GuardarEventoEditado().execute();
-                    }
-                }, 1000);
-            } else {
-                Toast.makeText(EditarEvento.this, "El evento con el ID " + evento.getId() + " ha sido editado", Toast.LENGTH_LONG).show();
-                SharedPreferences prefs = getSharedPreferences("EVENTOS CUCSH", Context.MODE_PRIVATE);
-                prefs.edit().putString("EVENTOS GUARDADOS", st_eventos_guardados).apply();
-                Intent i = getIntent();
-                i.putExtra("POSITION", i.getIntExtra("POSITION", 0));
-                setResult(RESULT_OK, i);
-                finishAfterTransition();
-            }
-        }
-    }
 }
 
