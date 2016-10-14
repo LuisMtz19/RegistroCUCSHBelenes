@@ -370,6 +370,7 @@ public class RegistrarEvento extends AppCompatActivity {
 
     private void loopComprobarhoras() {
 
+        //Cuando se encuentra dentro de la ventana para registrar los eventos
         if (!cerrar) {
             int n = 0;
             for (Fecha f : listaFechas){
@@ -384,7 +385,7 @@ public class RegistrarEvento extends AppCompatActivity {
                         mostrarSnack("Fecha del evento No. " + (n + 1) + "\nLos eventos no pueden comenzar a después de las 8:30 PM");
                     }
                 } else {
-                    // SI EL STRING DE COMPROBAR CUPO TIENE EVENTOS PROCEDEMOS CON LA COMPROBACION
+                    // SI LA LISTA A COMPROBAR CUPOS TIENE EVENTOS PROCEDEMOS CON LA COMPROBACION
                     if (Principal.lista_eventos.size() > 0) {
                         // SEPARAMOS EN EVENTOS INDIVIDUALES
                         for (Eventos e : Principal.lista_eventos) {
