@@ -30,7 +30,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,7 +42,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ccv.checkhelzio.registrocucshbelenes.R;
 import ccv.checkhelzio.registrocucshbelenes.util.AnimUtils;
-
+//Prueba
 public class RegistrarEvento extends AppCompatActivity {
 
     @BindView(R.id.fondo)

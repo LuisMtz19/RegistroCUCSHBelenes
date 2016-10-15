@@ -135,7 +135,6 @@ public class DialogListaEventosHelzio extends Activity {
     public void dismiss(View view) {
         if (animando){
             finish();
-             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }else {
             finishAfterTransition();
         }
