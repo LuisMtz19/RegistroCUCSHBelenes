@@ -44,7 +44,12 @@ public class Eventos implements Parcelable {
         this.tag = tag;
         this.fondo = fondo;
     }
-
+    
+    Eventos(String horaInicial,String horaFinal){
+        this.horaInicial = horaInicial;
+        this.horaFinal = horaFinal;
+    }
+    
     String getFecha() {
         return fecha;
     }
