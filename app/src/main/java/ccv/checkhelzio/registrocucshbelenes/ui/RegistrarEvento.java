@@ -139,6 +139,7 @@ public class RegistrarEvento extends AppCompatActivity {
 
     protected ArrayAdapter<String> adapterHoras;
     protected ArrayList<Fecha> listaFechas = new ArrayList<>();
+    protected ArrayList<Eventos> listaFechasE = new ArrayList<>();
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -371,9 +372,9 @@ public class RegistrarEvento extends AppCompatActivity {
     private void loopComprobarhoras() {
 
         if (!cerrar){
-            int x = 1;
+            int x = 0;
             for (Fecha f : listaFechas){
-                comprobarConBaseDatos(f, x);
+                comprobarFecha(f, x,Principal.lista_eventos);
                 x++;
             }
         }
@@ -381,349 +382,7 @@ public class RegistrarEvento extends AppCompatActivity {
         if (!cerrar) {
             int n = 0;
             for (Fecha f : listaFechas){
-                // EL EVENTO NO PUEDE COMENZAR DESPUES DE LAS 8:30 PM
-                if (f.getHoraInicial() > 27) {
-                    hora_correcta = false;
-                    f.getLabel_inicial().setTextColor(Color.RED);
-                    f.getLabel_final().setTextColor(Color.RED);
-
-                    if (!tagHora.equals("1")) {
-                        tagHora = "1";
-                        mostrarSnack("Fecha del evento No. " + (n + 1) + "\nLos eventos no pueden comenzar a después de las 8:30 PM");
-                    }
-                } else {
-                    // SI EL STRING DE COMPROBAR CUPO TIENE EVENTOS PROCEDEMOS CON LA COMPROBACION
-                    if (Principal.lista_eventos.size() > 0) {
-                        // SEPARAMOS EN EVENTOS INDIVIDUALES
-                        for (Eventos e : Principal.lista_eventos) {
-                            if (Integer.parseInt(e.getFecha()) == f.getDia() && e.getAuditorio().equals(AD) && !e.getStatusEvento().equals("X")){
-
-                                // EL EVENTO COMIENZA 30 MINUTOS ANTES DE QUE COMIENCE OTRO
-                                if (f.getHoraInicial() == Integer.valueOf(e.getHoraInicial()) - 1) {
-                                    hora_correcta = false;
-                                    f.getLabel_inicial().setTextColor(Color.RED);
-                                    f.getLabel_final().setTextColor(Color.parseColor("#121212"));
-
-                                    if (!tagHora.equals("4")) {
-                                        tagHora = "4";
-                                        mostrarSnack("Fecha del evento No. " + (n + 1) + "\nEl evento que quieres editar comienza 30 minutos antes de que comience el evento (" + e.getId() + ").");
-                                    }
-                                    break;
-                                }
-                                
-                                //LOS EVENTOS COMIENZAN A LA MISMA HORA
-                                else if (f.getHoraInicial() == Integer.valueOf(e.getHoraInicial())) {
-                                    hora_correcta = false;
-                                    f.getLabel_inicial().setTextColor(Color.RED);
-                                    f.getLabel_final().setTextColor(Color.parseColor("#121212"));
-
-                                    if (!tagHora.equals("2")) {
-                                        tagHora = "2";
-                                        mostrarSnack("Fecha del evento No. " + (n + 1) + "\nEl evento que quieres editar comienza a la misma hora que el evento (" + e.getId() + ").");
-                                    }
-                                    break;
-                                }
-
-                                // EL EVENTO COMIENZA 30 MINUTOS ANTES DE QUE TERMINE EL ANTERIOR
-                                else if (f.getHoraInicial() == Integer.valueOf(e.getHoraFinal())) {
-                                    hora_correcta = false;
-                                    f.getLabel_inicial().setTextColor(Color.RED);
-                                    f.getLabel_final().setTextColor(Color.parseColor("#121212"));
-
-                                    if (!tagHora.equals("3")) {
-                                        tagHora = "3";
-                                        mostrarSnack("Fecha del evento No. " + (n + 1) + "\nEl evento que quieres editar comienza 30 minutos antes de que finalice el evento (" + e.getId() + ").");
-                                    }
-                                    break;
-                                }
-                                
-                                // LA HORA INICIAL DEL EVENTO ESTA JUSTO EN MEDIO DEL HORARIO DE OTRO
-                                else if (f.getHoraInicial() > Integer.valueOf(e.getHoraInicial()) && f.getHoraInicial() < Integer.valueOf(e.getHoraFinal())) {
-                                    hora_correcta = false;
-                                    f.getLabel_inicial().setTextColor(Color.RED);
-                                    f.getLabel_final().setTextColor(Color.parseColor("#121212"));
-
-                                    if (!tagHora.equals("5")) {
-                                        tagHora = "5";
-                                        mostrarSnack("Fecha del evento No. " + (n + 1) + "\nEl evento que quieres editar comienza dentro del horario del evento (" + e.getId() + ").");
-                                    }
-                                    break;
-
-                                }
-
-                                // LA HORA INICIAL DEL EVENTO ES MENOR A LA HORA INICIAL DEL PROX EVENTO
-                                else if (f.getHoraInicial() < Integer.valueOf(e.getHoraInicial())) {
-
-                                    // EL EVENTO FINALIZA DENTRO DEL HORARIO DEL PROXIMO
-                                    if (f.getHoraFinal() - 1 == Integer.valueOf(e.getHoraInicial()) || f.getHoraFinal() - 1 == Integer.valueOf(e.getHoraFinal())) {
-                                        hora_correcta = false;
-
-                                        if (!tagHora.equals("6")) {
-                                            tagHora = "6";
-                                            mostrarSnack("Fecha del evento No. " + (n + 1) + "\nEl evento que quieres editar termina dentro del horario del evento (" + e.getId() + ").");
-                                        }
-
-                                        f.getLabel_final().setTextColor(Color.RED);
-                                        f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-                                        break;
-                                    }
-                                    // EL EVENTO FINALIZA DENTRO DEL HORARIO DEL PROXIMO
-                                    else if (f.getHoraFinal() - 1 > Integer.valueOf(e.getHoraInicial()) && f.getHoraFinal() - 1 < Integer.valueOf(e.getHoraFinal())) {
-                                        hora_correcta = false;
-                                        f.getLabel_final().setTextColor(Color.RED);
-                                        f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                        if (!tagHora.equals("6")) {
-                                            tagHora = "6";
-                                            mostrarSnack("Fecha del evento No. " + (n + 1) + "\nEl evento que quieres editar termina dentro del horario del evento (" + e.getId() + ").");
-                                        }
-
-                                        break;
-                                    }
-                                    // EL EVENTO COMIENZA ANTES Y TERMINA DESPUES DEL PROXIMO
-                                    else if (f.getHoraFinal() - 1 > Integer.valueOf(e.getHoraFinal())) {
-                                        hora_correcta = false;
-                                        f.getLabel_final().setTextColor(Color.RED);
-                                        f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                        if (!tagHora.equals("7")) {
-                                            tagHora = "7";
-                                            mostrarSnack("Fecha del evento No. " + (n + 1) + "\nHay un evento registrado en un horario intermedio al que has elegido (" + e.getId() + ").");
-                                        }
-                                        break;
-                                    } else if (f.getHoraFinal() - 1 < f.getHoraInicial()) {
-                                        hora_correcta = false;
-                                        f.getLabel_final().setTextColor(Color.RED);
-                                        f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                        if (!tagHora.equals("8")) {
-                                            tagHora = "8";
-                                            mostrarSnack("La hora final del evento no puede ser igual o menor a la inicial.");
-                                        }
-                                    } else if (f.getHoraFinal() - 1 == f.getHoraInicial()) {
-                                        hora_correcta = false;
-                                        f.getLabel_final().setTextColor(Color.RED);
-                                        f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                        if (!tagHora.equals("9")) {
-                                            tagHora = "9";
-                                            mostrarSnack("El evento debe durar más de 30 minutos.");
-                                        }
-                                    }
-                                    
-                                    // SI LA LISTA TIENE MAS DE UN FECHA
-                                    else if(n > 0){
-
-                                        Log.v("NINGUNA", "NINGUNA DE LAS ANTERIORES");
-                                        for (int x = 0; x < n; x++ ){
-                                            if (listaFechas.get(x).getDia() == listaFechas.get(n).getDia()){
-                                                if (listaFechas.get(x).getDia() == listaFechas.get(n).getDia()){
-
-                                                    if (listaFechas.get(x).getHoraInicial() == listaFechas.get(n).getHoraInicial()){
-                                                        hora_correcta = false;
-                                                        listaFechas.get(n).getLabel_inicial().setTextColor(Color.RED);
-
-                                                        if (!tagHora.equals("10")) {
-                                                            tagHora = "10";
-                                                            mostrarSnack("La hora inicial del evento No. " + n + " es igual a la hora inicial del evento No." + x + ".");
-                                                        }
-                                                    }
-                                                }
-                                            }else {
-                                                hora_correcta = true;
-                                                f.getLabel_final().setTextColor(Color.parseColor("#121212"));
-                                                f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                                // QUITAMOS LOS DIALOGS SOLO SI ES EL ULTIMO EVENTO QUE COMPROBAMOS
-                                                if (f == listaFechas.get(listaFechas.size() - 1)) {
-                                                    try {
-                                                        snackHora.dismiss();
-                                                        tagHora = "";
-                                                    } catch (Exception ignored) {
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    
-                                    else {
-                                        hora_correcta = true;
-                                        f.getLabel_final().setTextColor(Color.parseColor("#121212"));
-                                        f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-                                        
-                                        // QUITAMOS LOS DIALOGS SOLO SI ES EL ULTIMO EVENTO QUE COMPROBAMOS
-                                        if (f == listaFechas.get(listaFechas.size() - 1)) {
-                                            try {
-                                                snackHora.dismiss();
-                                                tagHora = "";
-                                            } catch (Exception ignored) {
-                                            }
-                                        }
-                                    }
-                                }
-                                
-                                //LA HORA INICIAL ES MAYOR AL EVENTO ANTERIOR POR LO TANTO ESTA BIEN
-                                else if (f.getHoraInicial() > Integer.valueOf(e.getHoraInicial()) && f.getHoraInicial() > Integer.valueOf(e.getHoraFinal())) {
-                                    if (f.getHoraFinal() - 1 < f.getHoraInicial()) {
-                                        hora_correcta = false;
-                                        f.getLabel_final().setTextColor(Color.RED);
-                                        f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                        if (!tagHora.equals("8")) {
-                                            tagHora = "8";
-                                            mostrarSnack("La hora final del evento no puede ser igual o menor a la inicial.");
-                                        }
-                                    } else if (f.getHoraFinal() - 1 == f.getHoraInicial()) {
-                                        hora_correcta = false;
-                                        f.getLabel_final().setTextColor(Color.RED);
-                                        f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                        if (!tagHora.equals("9")) {
-                                            tagHora = "9";
-                                            mostrarSnack("El evento debe durar más de 30 minutos.");
-                                        }
-                                    } else {
-                                        hora_correcta = true;
-                                        f.getLabel_final().setTextColor(Color.parseColor("#121212"));
-                                        f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-                                        if (f == listaFechas.get(listaFechas.size() - 1)) {
-                                            try {
-                                                snackHora.dismiss();
-                                                tagHora = "";
-                                            } catch (Exception ignored) {
-                                            }
-                                        }
-                                    }
-                                }
-                            }else {
-                                if (f.getHoraFinal() - 1 < f.getHoraInicial()) {
-                                    hora_correcta = false;
-                                    f.getLabel_final().setTextColor(Color.RED);
-                                    f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                    if (!tagHora.equals("8")) {
-                                        tagHora = "8";
-                                        mostrarSnack("La hora final del evento no puede ser igual o menor a la inicial.");
-                                    }
-                                } else if (f.getHoraFinal() - 1 == f.getHoraInicial()) {
-                                    hora_correcta = false;
-                                    f.getLabel_final().setTextColor(Color.RED);
-                                    f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                    if (!tagHora.equals("9")) {
-                                        tagHora = "9";
-                                        mostrarSnack("El evento debe durar más de 30 minutos.");
-                                    }
-                                } else {
-
-                                    for (int x = 0; x < n; x++ ){
-                                        if (listaFechas.get(x).getDia() == listaFechas.get(n).getDia()){
-                                            if (listaFechas.get(x).getHoraInicial() == listaFechas.get(n).getHoraInicial()){
-                                                hora_correcta = false;
-                                                listaFechas.get(n).getLabel_inicial().setTextColor(Color.RED);
-
-                                                if (!tagHora.equals("10")) {
-                                                    tagHora = "10";
-                                                    mostrarSnack("La hora inicial No. " + (n + 1) + " es igual a la hora inicial No. " + (x + 1) + ".");
-                                                }
-                                            }else if (listaFechas.get(x).getHoraInicial() == listaFechas.get(n).getHoraInicial() - 1){
-                                                hora_correcta = false;
-                                                listaFechas.get(n).getLabel_inicial().setTextColor(Color.RED);
-
-                                                if (!tagHora.equals("11")) {
-                                                    tagHora = "11";
-                                                    mostrarSnack("La hora inicial No. " + (n + 1) + " comienza 30 min después que la hora inicial No. " + (x + 1) + ".");
-                                                }
-                                            }else if (listaFechas.get(x).getHoraInicial()- 1 == listaFechas.get(n).getHoraInicial() ){
-                                                hora_correcta = false;
-                                                listaFechas.get(n).getLabel_inicial().setTextColor(Color.RED);
-
-                                                if (!tagHora.equals("11")) {
-                                                    tagHora = "11";
-                                                    mostrarSnack("La hora inicial No. " + (n + 1) + " comienza 30 min antes que la hora inicial No. " + (x + 1) + ".");
-                                                }
-                                            }else if (listaFechas.get(n).getHoraInicial() > listaFechas.get(x).getHoraInicial() && listaFechas.get(n).getHoraInicial() < listaFechas.get(x).getHoraFinal()){
-                                                hora_correcta = false;
-                                                listaFechas.get(n).getLabel_inicial().setTextColor(Color.RED);
-
-                                                if (!tagHora.equals("12")) {
-                                                    tagHora = "12";
-                                                    mostrarSnack("La hora inicial No. " + (n + 1) + " esta dentro del horario No. " + (x + 1) + ".");
-                                                }
-                                            }else if (listaFechas.get(n).getHoraInicial() > listaFechas.get(x).getHoraInicial() && listaFechas.get(n).getHoraInicial() < listaFechas.get(x).getHoraFinal()){
-                                                hora_correcta = false;
-                                                listaFechas.get(n).getLabel_inicial().setTextColor(Color.RED);
-
-                                                if (!tagHora.equals("12")) {
-                                                    tagHora = "12";
-                                                    mostrarSnack("La hora inicial No. " + (n + 1) + " esta dentro del horario No. " + (x + 1) + ".");
-                                                }
-                                            }else {
-                                                hora_correcta = true;
-                                                f.getLabel_final().setTextColor(Color.parseColor("#121212"));
-                                                f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                                // QUITAMOS LOS DIALOGS SOLO SI ES EL ULTIMO EVENTO QUE COMPROBAMOS
-                                                if (f == listaFechas.get(listaFechas.size() - 1)) {
-                                                    try {
-                                                        snackHora.dismiss();
-                                                        tagHora = "";
-                                                    } catch (Exception ignored) {
-                                                    }
-                                                }
-                                            }
-                                        }else {
-                                            hora_correcta = true;
-                                            f.getLabel_final().setTextColor(Color.parseColor("#121212"));
-                                            f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                                            // QUITAMOS LOS DIALOGS SOLO SI ES EL ULTIMO EVENTO QUE COMPROBAMOS
-                                            if (f == listaFechas.get(listaFechas.size() - 1)) {
-                                                try {
-                                                    snackHora.dismiss();
-                                                    tagHora = "";
-                                                } catch (Exception ignored) {
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    // SI EL STRING PARA COMPROBAR DATOS ESTA VACIO QUIERE DECIR QUE NO HAY EVENTO REGISTRADOS Y POR LO TANTO EL CUPO ESTA LIBRE
-                    else {
-                        if (f.getHoraFinal() - 1 < f.getHoraInicial()) {
-                            hora_correcta = false;
-                            f.getLabel_final().setTextColor(Color.RED);
-                            f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                            if (!tagHora.equals("8")) {
-                                tagHora = "8";
-
-                                mostrarSnack("La hora final del evento no puede ser igual o menor a la inicial.");
-                            }
-                        } else if (f.getHoraFinal() - 1 == f.getHoraInicial()) {
-                            hora_correcta = false;
-                            f.getLabel_final().setTextColor(Color.RED);
-                            f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-
-                            if (!tagHora.equals("9")) {
-                                tagHora = "9";
-                                mostrarSnack("El evento debe durar más de 30 minutos.");
-                            }
-                        } else {
-                            hora_correcta = true;
-                            f.getLabel_final().setTextColor(Color.parseColor("#121212"));
-                            f.getLabel_inicial().setTextColor(Color.parseColor("#121212"));
-                            try {
-                                snackHora.dismiss();
-                                tagHora = "";
-                            } catch (Exception ignored) {
-                            }
-                        }
-                    }
-                }
+                comprobarFecha(f,n,listaFechasE);
                 n++;
             }
             handler.postDelayed(new Runnable() {
@@ -734,8 +393,8 @@ public class RegistrarEvento extends AppCompatActivity {
             }, 200);
         }
     }
-
-    private void comprobarConBaseDatos(Fecha f, int n) {
+    //SE AÑADIO listafechasC PARA HACER QUE FUNCIONE CON CUALQUIER LISTA
+    private void comprobarFecha(Fecha f, int n,ArrayList<Eventos> listaFechasC) {
         // COMPROBAR PRIMERO SI SE ESTA INTENTANDO REGISTRAR UN EVENTO A LAS 9:00 PM O MAS TARDE
         if (f.getHoraInicial() > 27) {
             hora_correcta = false;
@@ -750,7 +409,7 @@ public class RegistrarEvento extends AppCompatActivity {
         // SI EL EVENTO SE ESTA INTENTANDO REGISTRAR EN UNA HORA VALIDA COMPROBAMOS EL CUPO CON LA BASE DE DATOS
         else {
             // SEPARAMOS EN EVENTOS INDIVIDUALES
-            for (Eventos e : Principal.lista_eventos) {
+            for (Eventos e : listaFechasC) {
                 if (Integer.parseInt(e.getFecha()) == f.getDia() && e.getAuditorio().equals(AD) && !e.getStatusEvento().equals("X")){
 
                     // EL EVENTO COMIENZA 30 MINUTOS ANTES DE QUE COMIENCE OTRO
@@ -1188,6 +847,8 @@ public class RegistrarEvento extends AppCompatActivity {
                     for (Integer f : listaFechas2){
                         try {
                             listaFechas.add(new Fecha(f, listaFechas.get(0).getHoraInicial(),listaFechas.get(0).getHoraFinal()));
+                            //SE ESTÁ AÑADIENDO A LA LISTA LA MISMA FECHA PERO COMO UNA LISTA DE EVENTOS
+                            listaFechasE.add(new Eventos(String.valueOf(listaFechas.get(0).getHoraInicial()),String.valueOf(listaFechas.get(0).getHoraFinal())));
                         }catch (Exception ignored0){
                             listaFechas.add(new Fecha(f, 0, 0));
                         }
